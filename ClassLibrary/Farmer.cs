@@ -15,8 +15,15 @@ namespace ClassLibrary
         {
             double side = perimeter / 4;
             double area = side * side;
+            double TestZalupa = 1;
             return area;
         }
+        
+        /// <summary>
+        /// тест залупы
+        /// </summary>
+        /// <param name="perimeter"></param>
+        /// <returns></returns>
         static double CorCircle(double perimeter)
         {
             double radius = perimeter / (2 * 3.141592653);
