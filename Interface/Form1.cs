@@ -4,8 +4,6 @@ namespace Interface
 {
     public partial class Form1 : Form
     {
-        bool isSelected = false;
-
         private static string figure = "";
         public Form1()
         {
@@ -14,8 +12,6 @@ namespace Interface
 
         private void clearStyles()
         {
-            isSelected = false;
-
             triangleFigure.BackColor = Color.White;
             triangleFigure.ForeColor = Color.Black;
             rhombusFigure.BackColor = Color.White;
@@ -38,28 +34,39 @@ namespace Interface
         {
             try
             {
+                double per;
+                if (!double.TryParse(perimeterInput.Text, out per))
+                {
+                    throw new Exception();
+                }
+
+                if(per < 0)
+                {
+                    throw new Exception();
+                }
+
                 switch (figure)
                 {
                     case "triangle":
-                        squareOutput.Text = Farmer.CorTriangle(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.CorTriangle(per).ToString();
                         break;
                     case "rhombus":
-                        squareOutput.Text = Farmer.Rhombus(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.Rhombus(per).ToString();
                         break;
                     case "square":
-                        squareOutput.Text = Farmer.Square(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.Square(per).ToString();
                         break;
                     case "pentagon":
-                        squareOutput.Text = Farmer.CorPentagon(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.CorPentagon(per).ToString();
                         break;
                     case "rectangle":
-                        squareOutput.Text = Farmer.Rectangle(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.Rectangle(per).ToString();
                         break;
                     case "circle":
-                        squareOutput.Text = Farmer.Circle(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.Circle(per).ToString();
                         break;
                     case "hexagon":
-                        squareOutput.Text = Farmer.CorHexagon(double.Parse(perimeterInput.Text)).ToString();
+                        squareOutput.Text = Farmer.CorHexagon(per).ToString();
                         break;
                     case "nangle":
                         int sides;
@@ -67,7 +74,7 @@ namespace Interface
                         {
                             if(sides >= 3)
                             {
-                                squareOutput.Text = Farmer.CorNgon(double.Parse(perimeterInput.Text), sides).ToString();
+                                squareOutput.Text = Farmer.CorNgon(per, sides).ToString();
                             }
                             else
                             {
@@ -76,7 +83,7 @@ namespace Interface
                         }
                         else
                         {
-                            MessageBox.Show("Неверный ввод сторон");
+                            MessageBox.Show("Неверный ввод углов");
                         }
                         break;
                     default:
