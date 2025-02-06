@@ -6,8 +6,14 @@ namespace ClassLibrary
 {
     public static class Faremer
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="perimeter"></param>
+        /// <returns> Площадь ромба </returns>
         static double CorRhombus(double perimeter)
         {
+            
             double side = perimeter / 4;
             double area = side * side;
             return area;
