@@ -61,7 +61,6 @@
             perimeterInput.Name = "perimeterInput";
             perimeterInput.Size = new Size(153, 23);
             perimeterInput.TabIndex = 1;
-            perimeterInput.TextChanged += perimeterInput_TextChanged;
             // 
             // squareOutput
             // 
@@ -69,7 +68,6 @@
             squareOutput.Name = "squareOutput";
             squareOutput.Size = new Size(176, 23);
             squareOutput.TabIndex = 2;
-            squareOutput.TextChanged += squareOutput_TextChanged;
             // 
             // calculate
             // 
@@ -99,6 +97,7 @@
             rhombusFigure.TabIndex = 5;
             rhombusFigure.Text = "Ромб";
             rhombusFigure.UseVisualStyleBackColor = true;
+            rhombusFigure.Click += rhombusFigure_Click;
             // 
             // pentagonFigure
             // 
@@ -108,6 +107,7 @@
             pentagonFigure.TabIndex = 6;
             pentagonFigure.Text = "Пятиугольник";
             pentagonFigure.UseVisualStyleBackColor = true;
+            pentagonFigure.Click += pentagonFigure_Click;
             // 
             // rectangleFigure
             // 
@@ -117,6 +117,7 @@
             rectangleFigure.TabIndex = 7;
             rectangleFigure.Text = "Прямоугольник";
             rectangleFigure.UseVisualStyleBackColor = true;
+            rectangleFigure.Click += rectangleFigure_Click;
             // 
             // circleFigure
             // 
@@ -126,6 +127,7 @@
             circleFigure.TabIndex = 9;
             circleFigure.Text = "Круг";
             circleFigure.UseVisualStyleBackColor = true;
+            circleFigure.Click += circleFigure_Click;
             // 
             // squareFigure
             // 
@@ -135,6 +137,7 @@
             squareFigure.TabIndex = 10;
             squareFigure.Text = "Квадрат";
             squareFigure.UseVisualStyleBackColor = true;
+            squareFigure.Click += squareFigure_Click;
             // 
             // hexagonFigure
             // 
@@ -144,6 +147,7 @@
             hexagonFigure.TabIndex = 11;
             hexagonFigure.Text = "Шестиугольник";
             hexagonFigure.UseVisualStyleBackColor = true;
+            hexagonFigure.Click += hexagonFigure_Click;
             // 
             // figureSelect
             // 
