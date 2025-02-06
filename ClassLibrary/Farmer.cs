@@ -1,4 +1,6 @@
-﻿using System.Data.SqlTypes;
+
+using System;
+using System.Data.SqlTypes;
 using System.Formats.Asn1;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -7,53 +9,155 @@ namespace ClassLibrary
 {
     public static class Faremer
     {
+        public static double CorRhombus(double perimeter)
+        {
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
 
-        static double CorRhombus(double perimeter)
-        {
-            double side = perimeter / 4;
-            double area = side * side;
-            return area;
-        }
-        static double CorCircle(double perimeter)
-        {
-            double radius = perimeter / (2 * 3.141592653);
-            double area = radius * radius * 3.141592653;
-            return area;
-        }
-        static double CorPentagon(double perimeter)
-        {
-            double side = perimeter / 5;
-            double area = (5 * side * side / 2) * Math.Sqrt(5 + 2 * Math.Sqrt(5));
-            return area;
-        }
-        static double CorHexagon(double perimeter)
-        {
-            double side = perimeter / 6;
-            double area = (3 * Math.Sqrt(3) / 2) * side * side;
-            return area;
+                double side = perimeter / 4;
+                return side * side;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
         }
 
-        static double CorRectangle(double perimeter)
+        public static double CorCircle(double perimeter)
         {
-            double area = perimeter * perimeter / 18;
-            return area;
-        }
-        static double CorSquare(double perimeter)
-        {
-            double area = Math.Pow(perimeter / 4, 2);
-            return area;
-        }
-        static double CorTriangle(double perimeter)
-        {
-            double area = Math.Sqrt(3) * Math.Pow(perimeter, 2) / 36;
-            return area;
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+
+                double radius = perimeter / (2 * Math.PI);
+                return radius * radius * Math.PI;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
         }
 
-        static double CorNgon(double perimeter, int sides)
+        public static double CorPentagon(double perimeter)
         {
-            double side = perimeter / sides;
-            double area = (sides * side * side / 4) * (1 / Math.Tan(Math.PI / sides));
-            return area;
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+                double side = perimeter / 5;
+                return (5 * side * side / 2) * Math.Sqrt(5 + 2 * Math.Sqrt(5));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
+        }
+
+        public static double CorHexagon(double perimeter)
+        {
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+
+                double side = perimeter / 6;
+                return (3 * Math.Sqrt(3) / 2) * side * side;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
+        }
+
+        public static double CorRectangle(double perimeter)
+        {
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+
+                return perimeter * perimeter / 18;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
+        }
+
+        public static double CorSquare(double perimeter)
+        {
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+                return Math.Pow(perimeter / 4, 2);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
+        }
+
+        public static double CorTriangle(double perimeter)
+        {
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+
+                return Math.Sqrt(3) * Math.Pow(perimeter, 2) / 36;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
+        }
+
+        public static double CorNgon(double perimeter, int sides)
+        {
+            try
+            {
+                if (perimeter <= 0)
+                {
+                    throw new ArgumentException("Периметр должен быть положительным числом.");
+                }
+                if (sides < 3)
+                {
+                    throw new ArgumentException("Многоугольник должен иметь минимум 3 стороны.");
+                }
+
+                double side = perimeter / sides;
+                return (sides * side * side / 4) * (1 / Math.Tan(Math.PI / sides));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+                return -1;
+            }
         }
     }
 }
