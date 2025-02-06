@@ -2,7 +2,8 @@
 {
     public class Faremer
     {
-        // porno за 4 рубля смс регистрация
-        // нет больше секса
+        /// <summary>
+        /// asdjflskdj;falsf
+        /// </summary>
     }
 }
