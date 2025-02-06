@@ -52,25 +52,25 @@ namespace Interface
                 switch (figure)
                 {
                     case "triangle":
-                        squareOutput.Text = Farmer.CorTriangle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorTriangle(per).ToString();
                         break;
                     case "rhombus":
-                        squareOutput.Text = Farmer.Rhombus(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rhombus(per).ToString();
                         break;
                     case "square":
-                        squareOutput.Text = Farmer.Square(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Square(per).ToString();
                         break;
                     case "pentagon":
-                        squareOutput.Text = Farmer.CorPentagon(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorPentagon(per).ToString();
                         break;
                     case "rectangle":
-                        squareOutput.Text = Farmer.Rectangle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rectangle(per).ToString();
                         break;
                     case "circle":
-                        squareOutput.Text = Farmer.Circle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Circle(per).ToString();
                         break;
                     case "hexagon":
-                        squareOutput.Text = Farmer.CorHexagon(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorHexagon(per).ToString();
                         break;
                     case "nangle":
                         int sides;
