@@ -113,6 +113,13 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Метод для нахождения площади прямоугольника
+        /// </summary>
+        /// <param name="perimeter">  Периметр прямоугольника  </param>
+        /// <param name="side">  Сторона прямоугольника  </param>
+        /// <param name="area">  Площадь прямоугольника  </param>
+        /// <returns>  Возаращет площадь прямоугольника  </returns>
         public static double Rectangle(double perimeter)
         {
             try
