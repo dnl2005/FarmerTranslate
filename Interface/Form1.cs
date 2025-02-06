@@ -4,7 +4,6 @@ namespace Interface
 {
     public partial class Form1 : Form
     {
-        private static double perimeter;
         private static string figure = "";
         public Form1()
         {
@@ -16,25 +15,36 @@ namespace Interface
             switch (figure)
             {
                 case "triangle":
-                    squareOutput.Text = Faremer.CorTriangle(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.CorTriangle(double.Parse(perimeterInput.Text)).ToString();
                     break;
                 case "rhombus":
-                    squareOutput.Text = Faremer.CorRhombus(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.Rhombus(double.Parse(perimeterInput.Text)).ToString();
                     break;
                 case "square":
-                    squareOutput.Text = Faremer.CorSquare(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.Square(double.Parse(perimeterInput.Text)).ToString();
                     break;
                 case "pentagon":
-                    squareOutput.Text = Faremer.CorPentagon(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.CorPentagon(double.Parse(perimeterInput.Text)).ToString();
                     break;
                 case "rectangle":
-                    squareOutput.Text = Faremer.CorRectangle(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.Rectangle(double.Parse(perimeterInput.Text)).ToString();
                     break;
                 case "circle":
-                    squareOutput.Text = Faremer.CorCircle(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.Circle(double.Parse(perimeterInput.Text)).ToString();
                     break;
                 case "hexagon":
-                    squareOutput.Text = Faremer.CorHexagon(double.Parse(perimeterInput.Text)).ToString();
+                    squareOutput.Text = Farmer.CorHexagon(double.Parse(perimeterInput.Text)).ToString();
+                    break;
+                case "nangle":
+                    int sides;
+                    if(int.TryParse(nangleSides.Text, out sides))
+                    {
+                        squareOutput.Text = Farmer.CorNgon(double.Parse(perimeterInput.Text), sides).ToString();
+                    }
+                    else
+                    {
+                        squareOutput.Text = "-1";
+                    }
                     break;
             }
         }
@@ -72,6 +82,11 @@ namespace Interface
         private void hexagonFigure_Click(object sender, EventArgs e)
         {
             figure = "hexagon";
+        }
+
+        private void nangleFigure_Click(object sender, EventArgs e)
+        {
+            figure = "nangle";
         }
     }
 }
