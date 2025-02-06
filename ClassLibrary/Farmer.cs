@@ -9,6 +9,14 @@ namespace ClassLibrary
 {
     public static class Faremer
     {
+
+        /// <summary>
+        /// Метод для нахождения площади ромба
+        /// </summary>
+        /// <param name="perimeter">  Периметр ромба  </param>
+        /// <param name="side">  Сторона ромба  </param>
+        /// <param name="area">  Площадь ромба  </param>
+        /// <returns> Возаращет площадь ромба </returns>
         public static double CorRhombus(double perimeter)
         {
             try
