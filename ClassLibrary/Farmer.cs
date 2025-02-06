@@ -1,8 +1,11 @@
 ﻿namespace ClassLibrary
 {
-    public class Faremer
+    public static class Faremer
     {
-        // секс52
-        static int asdf = 0;
+        static double CorRhombus(double Perimeter)
+        {
+            Perimeter = Perimeter * 2;
+            return Perimeter;
+        }
     }
 }
