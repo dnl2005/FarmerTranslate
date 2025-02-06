@@ -1,23 +1,9 @@
 
-using System;
-using System.Data.SqlTypes;
-using System.Formats.Asn1;
-using System.Security.AccessControl;
-using System.Security.Principal;
-
 namespace ClassLibrary
 {
     public static class Faremer
     {
-
-        /// <summary>
-        /// Метод для нахождения площади ромба
-        /// </summary>
-        /// <param name="perimeter">  Периметр ромба  </param>
-        /// <param name="side">  Сторона ромба  </param>
-        /// <param name="area">  Площадь ромба  </param>
-        /// <returns> Возаращет площадь ромба </returns>
-        public static double Rhombus(double perimeter)
+        public static double CorRhombus(double perimeter)
         {
             try
             {
@@ -36,14 +22,7 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади круга
-        /// </summary>
-        /// <param name="perimeter">  Периметр круга  </param>
-        /// <param name="radius">  Радиус круга  </param>
-        /// <param name="area">  Площадь круга  </param>
-        /// <returns> Возаращет площадь круга </returns>
-        public static double Circle(double perimeter)
+        public static double CorCircle(double perimeter)
         {
             try
             {
@@ -62,13 +41,6 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади пятиугольника
-        /// </summary>
-        /// <param name="perimeter">  Периметр пятиугольника  </param>
-        /// <param name="side">  Сторона пятиугольника  </param>
-        /// <param name="area">  Площадь пятиугольника  </param>
-        /// <returns> Возаращет площадь пятиугольника </returns>
         public static double CorPentagon(double perimeter)
         {
             try
@@ -87,13 +59,6 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади шестиугольника
-        /// </summary>
-        /// <param name="perimeter">  Периметр шестиугольника  </param>
-        /// <param name="side">  Сторона шестиугольника  </param>
-        /// <param name="area">  Площадь шестиугольника  </param>
-        /// <returns> Возаращет площадь шестиугольника </returns>
         public static double CorHexagon(double perimeter)
         {
             try
@@ -113,14 +78,7 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади прямоугольника
-        /// </summary>
-        /// <param name="perimeter">  Периметр прямоугольника  </param>
-        /// <param name="side">  Сторона прямоугольника  </param>
-        /// <param name="area">  Площадь прямоугольника  </param>
-        /// <returns>  Возаращет площадь прямоугольника  </returns>
-        public static double Rectangle(double perimeter)
+        public static double CorRectangle(double perimeter)
         {
             try
             {
@@ -138,14 +96,7 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади квадрата
-        /// </summary>
-        /// <param name="perimeter">  Периметр квадрата  </param>
-        /// <param name="side">  Сторона квадрата  </param>
-        /// <param name="area">  Площадь квадрата  </param>
-        /// <returns>  Возаращет площадь квадрата  </returns>
-        public static double Square(double perimeter)
+        public static double CorSquare(double perimeter)
         {
             try
             {
@@ -162,13 +113,6 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади правильного треугольника
-        /// </summary>
-        /// <param name="perimeter">  Периметр правильного треугольника  </param>
-        /// <param name="side">  Сторона правильного треугольника  </param>
-        /// <param name="area">  Площадь правильного треугольника  </param>
-        /// <returns>  Возаращет площадь правильного треугольника  </returns>
         public static double CorTriangle(double perimeter)
         {
             try
@@ -187,13 +131,6 @@ namespace ClassLibrary
             }
         }
 
-        /// <summary>
-        /// Метод для нахождения площади n-угольника
-        /// </summary>
-        /// <param name="perimeter">  Периметр n-угольника  </param>
-        /// <param name="side">  Сторона n-угольника  </param>
-        /// <param name="area">  Площадь n-угольника  </param>
-        /// <returns>  Возаращет площадь n-уго  </returns>
         public static double CorNgon(double perimeter, int sides)
         {
             try
