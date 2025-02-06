@@ -82,7 +82,7 @@ namespace Interface
                             }
                             else
                             {
-                                MessageBox.Show(" оличество сторон должно быть не меньше 3");
+                                MessageBox.Show(" оличество углов должно быть не меньше 3");
                             }
                         }
                         else
