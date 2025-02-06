@@ -1,4 +1,5 @@
-﻿using System.Formats.Asn1;
+﻿using System.Data.SqlTypes;
+using System.Formats.Asn1;
 using System.Security.AccessControl;
 using System.Security.Principal;
 
@@ -16,6 +17,18 @@ namespace ClassLibrary
         {
             double radius = perimeter / (2 * 3.141592653);
             double area = radius * radius * 3.141592653;
+            return area;
+        }
+        static double CorPentagon(double perimeter) 
+        {
+            double side = perimeter / 5;
+            double area = (5 * side * side / 2) * Math.Sqrt(5+2*Math.Sqrt(5));
+            return area;
+        }
+        static double CorHexagon(double perimeter)
+        {
+            double side = perimeter / 6;
+            double area = (3 * Math.Sqrt(3) / 2) * side * side;
             return area;
         }
     }
