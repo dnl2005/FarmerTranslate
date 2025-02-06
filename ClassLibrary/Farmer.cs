@@ -1,12 +1,13 @@
 using System;
 using System.Data.SqlTypes;
 using System.Formats.Asn1;
+using System.Reflection.Metadata;
 using System.Security.AccessControl;
 using System.Security.Principal;
 
 namespace ClassLibrary
 {
-    public static class Faremer
+    public static class Farmer
     {
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace ClassLibrary
                     throw new ArgumentException("Периметр должен быть положительным числом.");
                 }
                 double side = perimeter / 5;
-                return (5 * side * side / 2) * Math.Sqrt(5 + 2 * Math.Sqrt(5));
+                return 5 * Math.Pow(side, 2) / Math.Tan(Math.PI/5) / 4;
             }
             catch (Exception ex)
             {
@@ -103,7 +104,7 @@ namespace ClassLibrary
                 }
 
                 double side = perimeter / 6;
-                return (3 * Math.Sqrt(3) / 2) * side * side;
+                return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2 ;
             }
             catch (Exception ex)
             {
@@ -207,7 +208,7 @@ namespace ClassLibrary
                 }
 
                 double side = perimeter / sides;
-                return (sides * side * side / 4) * (1 / Math.Tan(Math.PI / sides));
+                return sides * Math.Pow(side,2) / Math.Tan(Math.PI / sides) / 4;
             }
             catch (Exception ex)
             {
