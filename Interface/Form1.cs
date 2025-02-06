@@ -4,12 +4,18 @@ namespace Interface
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// переменная выбора фигуры
+        /// </summary>
         private static string figure = "";
         public Form1()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// обнуление стилий для дальнейшего выбора кнопки
+        /// </summary>
         private void clearStyles()
         {
             triangleFigure.BackColor = Color.White;
@@ -30,6 +36,9 @@ namespace Interface
             circleFigure.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопки и вычисление площади
+        /// </summary>
         private void calculate_Click(object sender, EventArgs e)
         {
             try
@@ -104,6 +113,8 @@ namespace Interface
                 MessageBox.Show("Ошибка ввода периметра");
             }
         }
+
+        // ДАЛЕЕ ПРИМЕНЕНИЕ СТИЛИЙ ПРИ НАЖАТИИ КНОПКИ
 
         private void triangleFigure_Click(object sender, EventArgs e)
         {
