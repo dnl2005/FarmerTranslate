@@ -44,6 +44,10 @@ namespace Interface
                 {
                     throw new Exception();
                 }
+                else if (per == 0)
+                {
+                    MessageBox.Show("¬ведите периметр");
+                }
 
                 switch (figure)
                 {
