@@ -20,7 +20,18 @@ namespace ClassLibrary
         }
         static double Rectangle(double Perimeter)
         {
-
+            double area = Perimeter * Perimeter / 18;
+            return area;
+        }
+        static double Square(double Perimeter)
+        {
+            double area = Math.Pow(Perimeter /4,2);
+            return area;
+        }
+        static double Triangle(double Perimeter)
+        {
+            double area = Math.Pow(Perimeter / 4, 2);
+            return area;
         }
     }
 }
