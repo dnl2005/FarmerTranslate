@@ -31,5 +31,21 @@ namespace ClassLibrary
             double area = (3 * Math.Sqrt(3) / 2) * side * side;
             return area;
         }
+
+        static double Rectangle(double Perimeter)
+        {
+            double area = Perimeter * Perimeter / 18;
+            return area;
+        }
+        static double Square(double Perimeter)
+        {
+            double area = Math.Pow(Perimeter / 4, 2);
+            return area;
+        }
+        static double CorTriangle(double Perimeter)
+        {
+            double area = Math.Sqrt(3) * Math.Pow(Perimeter, 2) / 36;
+            return area;
+        }
     }
 }
