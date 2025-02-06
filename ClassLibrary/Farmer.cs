@@ -9,5 +9,9 @@
             Perimeter = Perimeter * 2;
             return Perimeter;
         }
+        static double Rectangle(double Perimeter)
+        {
+
+        }
     }
 }
