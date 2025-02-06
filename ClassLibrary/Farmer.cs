@@ -19,21 +19,8 @@ namespace ClassLibrary
         /// <returns> Возаращет площадь ромба </returns>
         public static double Rhombus(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-
-                double side = perimeter / 4;
-                return side * side;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            double side = perimeter / 4;
+            return side * side;
         }
 
         /// <summary>
@@ -45,21 +32,8 @@ namespace ClassLibrary
         /// <returns> Возаращет площадь круга </returns>
         public static double Circle(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-
-                double radius = perimeter / (2 * Math.PI);
-                return radius * radius * Math.PI;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            double radius = perimeter / (2 * Math.PI);
+            return radius * radius * Math.PI;
         }
 
         /// <summary>
@@ -71,20 +45,8 @@ namespace ClassLibrary
         /// <returns> Возаращет площадь пятиугольника </returns>
         public static double CorPentagon(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-                double side = perimeter / 5;
-                return 5 * Math.Pow(side, 2) / Math.Tan(Math.PI/5) / 4;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            double side = perimeter / 5;
+            return 5 * Math.Pow(side, 2) / Math.Tan(Math.PI/5) / 4;
         }
 
         /// <summary>
@@ -96,21 +58,8 @@ namespace ClassLibrary
         /// <returns> Возаращет площадь шестиугольника </returns>
         public static double CorHexagon(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-
-                double side = perimeter / 6;
-                return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2 ;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            double side = perimeter / 6;
+            return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2 ;
         }
 
         /// <summary>
@@ -122,20 +71,7 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь прямоугольника  </returns>
         public static double Rectangle(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-
-                return perimeter * perimeter / 18;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            return perimeter * perimeter / 18;
         }
 
         /// <summary>
@@ -147,19 +83,7 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь квадрата  </returns>
         public static double Square(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-                return Math.Pow(perimeter / 4, 2);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            return Math.Pow(perimeter / 4, 2);
         }
 
         /// <summary>
@@ -171,20 +95,7 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь правильного треугольника  </returns>
         public static double CorTriangle(double perimeter)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-
-                return Math.Sqrt(3) * Math.Pow(perimeter, 2) / 36;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            return Math.Sqrt(3) * Math.Pow(perimeter, 2) / 36;
         }
 
         /// <summary>
@@ -196,25 +107,8 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь n-уго  </returns>
         public static double CorNgon(double perimeter, int sides)
         {
-            try
-            {
-                if (perimeter <= 0)
-                {
-                    throw new ArgumentException("Периметр должен быть положительным числом.");
-                }
-                if (sides < 3)
-                {
-                    throw new ArgumentException("Многоугольник должен иметь минимум 3 стороны.");
-                }
-
-                double side = perimeter / sides;
-                return sides * Math.Pow(side,2) / Math.Tan(Math.PI / sides) / 4;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                return -1;
-            }
+            double side = perimeter / sides;
+            return sides * Math.Pow(side,2) / Math.Tan(Math.PI / sides) / 4;
         }
     }
 }

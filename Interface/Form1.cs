@@ -78,7 +78,7 @@ namespace Interface
                         {
                             if(sides >= 3)
                             {
-                                squareOutput.Text = Farmer.CorNgon(per, sides).ToString();
+                                squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(per, sides).ToString();
                             }
                             else if(sides < 0)
                             {
