@@ -80,6 +80,10 @@ namespace Interface
                             {
                                 squareOutput.Text = Farmer.CorNgon(per, sides).ToString();
                             }
+                            else if(sides < 0)
+                            {
+                                MessageBox.Show(" оличество углов не должно быть отрицательным");
+                            }
                             else
                             {
                                 MessageBox.Show(" оличество углов должно быть не меньше 3");
