@@ -25,12 +25,12 @@ namespace ClassLibrary
         }
         static double Square(double Perimeter)
         {
-            double area = Math.Pow(Perimeter /4,2);
+            double area = Math.Pow(Perimeter / 4, 2);
             return area;
         }
         static double Triangle(double Perimeter)
         {
-            double area = Math.Pow(Perimeter / 4, 2);
+            double area = Math.Sqrt(3) * Math.Pow(Perimeter, 2) / 36;
             return area;
         }
     }
