@@ -63,6 +63,7 @@
             perimeterInput.Name = "perimeterInput";
             perimeterInput.Size = new Size(126, 23);
             perimeterInput.TabIndex = 1;
+            perimeterInput.Text = "16";
             // 
             // squareOutput
             // 
@@ -83,17 +84,18 @@
             // 
             // triangleFigure
             // 
-            triangleFigure.Location = new Point(103, 229);
+            triangleFigure.BackColor = SystemColors.ButtonHighlight;
+            triangleFigure.Location = new Point(103, 258);
             triangleFigure.Name = "triangleFigure";
             triangleFigure.Size = new Size(120, 35);
             triangleFigure.TabIndex = 4;
             triangleFigure.Text = "Треугольник";
-            triangleFigure.UseVisualStyleBackColor = true;
+            triangleFigure.UseVisualStyleBackColor = false;
             triangleFigure.Click += triangleFigure_Click;
             // 
             // rhombusFigure
             // 
-            rhombusFigure.Location = new Point(252, 229);
+            rhombusFigure.Location = new Point(262, 258);
             rhombusFigure.Name = "rhombusFigure";
             rhombusFigure.Size = new Size(120, 35);
             rhombusFigure.TabIndex = 5;
@@ -103,7 +105,7 @@
             // 
             // pentagonFigure
             // 
-            pentagonFigure.Location = new Point(402, 229);
+            pentagonFigure.Location = new Point(402, 258);
             pentagonFigure.Name = "pentagonFigure";
             pentagonFigure.Size = new Size(120, 35);
             pentagonFigure.TabIndex = 6;
@@ -113,7 +115,7 @@
             // 
             // rectangleFigure
             // 
-            rectangleFigure.Location = new Point(553, 229);
+            rectangleFigure.Location = new Point(553, 258);
             rectangleFigure.Name = "rectangleFigure";
             rectangleFigure.Size = new Size(120, 35);
             rectangleFigure.TabIndex = 7;
@@ -123,7 +125,7 @@
             // 
             // circleFigure
             // 
-            circleFigure.Location = new Point(327, 293);
+            circleFigure.Location = new Point(327, 322);
             circleFigure.Name = "circleFigure";
             circleFigure.Size = new Size(120, 35);
             circleFigure.TabIndex = 9;
@@ -133,7 +135,7 @@
             // 
             // squareFigure
             // 
-            squareFigure.Location = new Point(177, 293);
+            squareFigure.Location = new Point(177, 322);
             squareFigure.Name = "squareFigure";
             squareFigure.Size = new Size(120, 35);
             squareFigure.TabIndex = 10;
@@ -143,7 +145,7 @@
             // 
             // hexagonFigure
             // 
-            hexagonFigure.Location = new Point(473, 293);
+            hexagonFigure.Location = new Point(473, 322);
             hexagonFigure.Name = "hexagonFigure";
             hexagonFigure.Size = new Size(120, 35);
             hexagonFigure.TabIndex = 11;
@@ -154,15 +156,16 @@
             // figureSelect
             // 
             figureSelect.AutoSize = true;
-            figureSelect.Location = new Point(359, 187);
+            figureSelect.Font = new Font("Monotype Corsiva", 15.75F, FontStyle.Italic, GraphicsUnit.Point, 204);
+            figureSelect.Location = new Point(348, 211);
             figureSelect.Name = "figureSelect";
-            figureSelect.Size = new Size(50, 15);
+            figureSelect.Size = new Size(75, 25);
             figureSelect.TabIndex = 12;
             figureSelect.Text = "Фигуры";
             // 
             // nangleFigure
             // 
-            nangleFigure.Location = new Point(453, 365);
+            nangleFigure.Location = new Point(453, 394);
             nangleFigure.Name = "nangleFigure";
             nangleFigure.Size = new Size(85, 23);
             nangleFigure.TabIndex = 13;
@@ -172,15 +175,16 @@
             // 
             // nangleSides
             // 
-            nangleSides.Location = new Point(336, 365);
+            nangleSides.Location = new Point(336, 394);
             nangleSides.Name = "nangleSides";
             nangleSides.Size = new Size(100, 23);
             nangleSides.TabIndex = 14;
+            nangleSides.Text = "3";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(214, 369);
+            label2.Location = new Point(214, 398);
             label2.Name = "label2";
             label2.Size = new Size(106, 15);
             label2.TabIndex = 15;
