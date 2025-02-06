@@ -2,7 +2,7 @@
 {
     public class Faremer
     {
-        // секс
+        // секс52
         static int asdf = 0;
     }
 }
