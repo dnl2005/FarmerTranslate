@@ -32,19 +32,26 @@ namespace ClassLibrary
             return area;
         }
 
-        static double Rectangle(double Perimeter)
+        static double CorRectangle(double perimeter)
         {
-            double area = Perimeter * Perimeter / 18;
+            double area = perimeter * perimeter / 18;
             return area;
         }
-        static double Square(double Perimeter)
+        static double CorSquare(double perimeter)
         {
-            double area = Math.Pow(Perimeter / 4, 2);
+            double area = Math.Pow(perimeter / 4, 2);
             return area;
         }
-        static double CorTriangle(double Perimeter)
+        static double CorTriangle(double perimeter)
         {
-            double area = Math.Sqrt(3) * Math.Pow(Perimeter, 2) / 36;
+            double area = Math.Sqrt(3) * Math.Pow(perimeter, 2) / 36;
+            return area;
+        }
+
+        static double CorNgon(double perimeter, int sides)
+        {
+            double side = perimeter / sides;
+            double area = (sides*side*side/4) * (1/Math.Tan(Math.PI/sides));
             return area;
         }
     }
