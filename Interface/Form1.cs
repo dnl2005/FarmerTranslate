@@ -61,25 +61,25 @@ namespace Interface
                 switch (figure)
                 {
                     case "triangle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorTriangle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorTriangle(perimeterInput.Text).ToString();
                         break;
                     case "rhombus":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rhombus(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rhombus(perimeterInput.Text).ToString();
                         break;
                     case "square":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Square(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Square(perimeterInput.Text).ToString();
                         break;
                     case "pentagon":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorPentagon(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorPentagon(perimeterInput.Text).ToString();
                         break;
                     case "rectangle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rectangle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rectangle(perimeterInput.Text).ToString();
                         break;
                     case "circle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Circle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Circle(perimeterInput.Text).ToString();
                         break;
                     case "hexagon":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorHexagon(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorHexagon(perimeterInput.Text).ToString();
                         break;
                     case "nangle":
                         int sides;
@@ -87,7 +87,7 @@ namespace Interface
                         {
                             if(sides >= 3)
                             {
-                                squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(per, sides).ToString();
+                                squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(perimeterInput.Text, sides).ToString();
                             }
                             else if(sides < 0)
                             {

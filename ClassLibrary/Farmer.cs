@@ -11,17 +11,28 @@ namespace ClassLibrary
 {
     public static class Farmer
     {
-       /// <summary>
-       /// Метод для обработки общей ошибки длины периметра
-       /// </summary>
-       /// <param name="perimeter"> Длина периметра </param>
-       /// <exception cref="Exception"> Ошибка неверной длины периметра</exception>
-        private static void ErrorDispatcher(double perimeter)
+        public static readonly string negNullPerEx = "NegativeNullPerimeterValueException";
+        public static readonly string invalidPerEx = "InvalidPerimeterValueException";
+        public static readonly string invalidSidesEx = "InvalidSidesValueNgonException";
+        /// <summary>
+        /// Метод для обработки общей ошибки длины периметра
+        /// </summary>
+        /// <param name="perimeter"> Длина периметра </param>
+        /// <exception cref="Exception"> Ошибка неверной длины периметра</exception>
+        private static double ErrorDispatcher(string perimeter)
         {
-            if (perimeter <= 0)
+            double per;
+            if(!double.TryParse(perimeter, out per))
             {
-                throw new Exception("InvalidPerimeterException");
+                throw new Exception(invalidPerEx);
             }
+
+            if (per <= 0)
+            {
+                throw new Exception(negNullPerEx);
+            }
+
+            return per;
         }
         /// <summary>
         /// Метод для нахождения площади ромба
@@ -30,9 +41,10 @@ namespace ClassLibrary
         /// <param name="side">  Сторона ромба  </param>
         /// <param name="area">  Площадь ромба  </param>
         /// <returns> Возаращет площадь ромба </returns>
-        public static double Rhombus(double perimeter)
+        public static double Rhombus(string perimeter)
         {
-            double side = perimeter / 4;
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / 4;
             return side * side;
         }
 
@@ -43,9 +55,10 @@ namespace ClassLibrary
         /// <param name="radius">  Радиус круга  </param>
         /// <param name="area">  Площадь круга  </param>
         /// <returns> Возаращет площадь круга </returns>
-        public static double Circle(double perimeter)
+        public static double Circle(string perimeter)
         {
-            double radius = perimeter / (2 * Math.PI);
+            double per = ErrorDispatcher(perimeter.ToString());
+            double radius = per / (2 * Math.PI);
             return radius * radius * Math.PI;
         }
 
@@ -56,15 +69,16 @@ namespace ClassLibrary
         /// <param name="side">  Сторона пятиугольника  </param>
         /// <param name="area">  Площадь пятиугольника  </param>
         /// <returns> Возаращет площадь пятиугольника </returns>
-        public static double CorPentagon(double perimeter)
+        public static double CorPentagon(string perimeter)
         {
-            double side = perimeter / 5;
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / 5;
             double areaTotal = 0;
             //площадь 5 состоит из 5 правильных теругольников: Sn = n*Sтр
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
-            ErrorDispatcher(perimeter);
+            ErrorDispatcher(perimeter.ToString());
             double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
             areaTotal = 5 * areaTriangle;
             return areaTotal;
@@ -77,9 +91,10 @@ namespace ClassLibrary
         /// <param name="side">  Сторона шестиугольника  </param>
         /// <param name="area">  Площадь шестиугольника  </param>
         /// <returns> Возаращет площадь шестиугольника </returns>
-        public static double CorHexagon(double perimeter)
+        public static double CorHexagon(string perimeter)
         {
-            double side = perimeter / 6;
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / 6;
             return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2 ;
         }
 
@@ -90,9 +105,10 @@ namespace ClassLibrary
         /// <param name="side">  Сторона прямоугольника  </param>
         /// <param name="area">  Площадь прямоугольника  </param>
         /// <returns>  Возаращет площадь прямоугольника  </returns>
-        public static double Rectangle(double perimeter)
+        public static double Rectangle(string perimeter)
         {
-            return perimeter * perimeter / 18;
+            double per = ErrorDispatcher(perimeter.ToString());
+            return per * per / 18;
         }
 
         /// <summary>
@@ -102,9 +118,10 @@ namespace ClassLibrary
         /// <param name="side">  Сторона квадрата  </param>
         /// <param name="area">  Площадь квадрата  </param>
         /// <returns>  Возаращет площадь квадрата  </returns>
-        public static double Square(double perimeter)
+        public static double Square(string perimeter)
         {
-            return Math.Pow(perimeter / 4, 2);
+            double per = ErrorDispatcher(perimeter.ToString());
+            return Math.Pow(per / 4, 2);
         }
 
         /// <summary>
@@ -114,9 +131,10 @@ namespace ClassLibrary
         /// <param name="side">  Сторона правильного треугольника  </param>
         /// <param name="area">  Площадь правильного треугольника  </param>
         /// <returns>  Возаращет площадь правильного треугольника  </returns>
-        public static double CorTriangle(double perimeter)
+        public static double CorTriangle(string perimeter)
         {
-            return Math.Sqrt(3) * Math.Pow(perimeter, 2) / 36;
+            double per = ErrorDispatcher(perimeter.ToString());
+            return Math.Sqrt(3) * Math.Pow(per, 2) / 36;
         }
 
         /// <summary>
@@ -125,15 +143,16 @@ namespace ClassLibrary
         /// <param name="perimeter">  Периметр n-угольника  </param>
         /// <param name="sides">  Кл-во сторон n-угольника  </param>
         /// <returns>  Возаращет площадь n-угольника  </returns>
-        public static double CorNgon(double perimeter, int sides)
+        public static double CorNgon(string perimeter, int sides)
         {
-            double side = perimeter / sides;
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / sides;
             double areaTotal = 0;
             //площадь n-угольника состоит из нескольких теругольников: Sn = n*Sтр
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
-            ErrorDispatcher(perimeter);
+            
             if (sides >4)
             {
                 double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
@@ -151,13 +170,9 @@ namespace ClassLibrary
                 areaTotal = areaTriangle;
                 return areaTotal;
             }
-            else if(sides == 2 || sides == 1)
+            else if(sides == 2 || sides == 1 || sides <= 0)
             {
-                throw new Exception("SidesNgonException");
-            }
-            else if (sides >= 0)
-            {
-                throw new Exception("InvalidSidesValueNgonException");
+                throw new Exception(invalidSidesEx);
             }
             return 0;
         }
