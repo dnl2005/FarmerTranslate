@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel;
 using System.Data.SqlTypes;
+using System.Drawing;
 using System.Formats.Asn1;
 using System.Reflection.Metadata;
 using System.Security.AccessControl;
@@ -9,7 +11,18 @@ namespace ClassLibrary
 {
     public static class Farmer
     {
-
+       /// <summary>
+       /// Метод для обработки общей ошибки длины периметра
+       /// </summary>
+       /// <param name="perimeter"> Длина периметра </param>
+       /// <exception cref="Exception"> Ошибка неверной длины периметра</exception>
+        private static void ErrorDispatcher(double perimeter)
+        {
+            if (perimeter <= 0)
+            {
+                throw new Exception("InvalidPerimeterException");
+            }
+        }
         /// <summary>
         /// Метод для нахождения площади ромба
         /// </summary>
@@ -46,7 +59,15 @@ namespace ClassLibrary
         public static double CorPentagon(double perimeter)
         {
             double side = perimeter / 5;
-            return 5 * Math.Pow(side, 2) / Math.Tan(Math.PI/5) / 4;
+            double areaTotal = 0;
+            //площадь 5 состоит из 5 правильных теругольников: Sn = n*Sтр
+            //площадь треугольника S = 1/2 *a*h
+            //высота равностороннего треугольника(формула) h = a*√3/2
+            //площадь равностороннего треугольника S = a^2*√3/4
+            ErrorDispatcher(perimeter);
+            double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
+            areaTotal = 5 * areaTriangle;
+            return areaTotal;
         }
 
         /// <summary>
@@ -102,13 +123,43 @@ namespace ClassLibrary
         /// Метод для нахождения площади n-угольника
         /// </summary>
         /// <param name="perimeter">  Периметр n-угольника  </param>
-        /// <param name="side">  Сторона n-угольника  </param>
-        /// <param name="area">  Площадь n-угольника  </param>
-        /// <returns>  Возаращет площадь n-уго  </returns>
+        /// <param name="sides">  Кл-во сторон n-угольника  </param>
+        /// <returns>  Возаращет площадь n-угольника  </returns>
         public static double CorNgon(double perimeter, int sides)
         {
             double side = perimeter / sides;
-            return sides * Math.Pow(side,2) / Math.Tan(Math.PI / sides) / 4;
+            double areaTotal = 0;
+            //площадь n-угольника состоит из нескольких теругольников: Sn = n*Sтр
+            //площадь треугольника S = 1/2 *a*h
+            //высота равностороннего треугольника(формула) h = a*√3/2
+            //площадь равностороннего треугольника S = a^2*√3/4
+            ErrorDispatcher(perimeter);
+            if (sides >4)
+            {
+                double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
+                areaTotal = (sides) * areaTriangle;
+                return areaTotal;
+            }
+            else if (sides == 4)
+            { 
+                areaTotal = side * side;
+                return areaTotal;
+            }
+            else if (sides == 3)
+            {
+                double areaTriangle = side * side * Math.Sqrt(3) / 4;
+                areaTotal = areaTriangle;
+                return areaTotal;
+            }
+            else if(sides == 2 || sides == 1)
+            {
+                throw new Exception("SidesNgonException");
+            }
+            else if (sides >= 0)
+            {
+                throw new Exception("InvalidSidesValueNgonException");
+            }
+            return 0;
         }
     }
 }
