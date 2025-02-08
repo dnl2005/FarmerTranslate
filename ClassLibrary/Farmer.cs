@@ -46,24 +46,29 @@ namespace ClassLibrary
         /// Метод для нахождения площади пятиугольника
         /// </summary>
         /// <param name="perimeter">  Периметр пятиугольника  </param>
-        /// <param name="side">  Сторона пятиугольника  </param>
-        /// <param name="area">  Площадь пятиугольника  </param>
         /// <returns> Возаращет площадь пятиугольника </returns>
         public static double CorPentagon(double perimeter)
         {
             double side = perimeter / 5;
-            return 5 * Math.Pow(side, 2) / Math.Tan(Math.PI / 5) / 4;
+            double areaTotal = 0;
+            //площадь 5 состоит из 5 правильных теругольников: Sn = n*Sтр
+            //площадь треугольника S = 1/2 *a*h
+            //высота равностороннего треугольника(формула) h = a*√3/2
+            //площадь равностороннего треугольника S = a^2*√3/4
+            //ErrorDispatcher(perimeter);
+            double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
+            areaTotal = 5 * areaTriangle;
+            return areaTotal;
         }
 
         /// <summary>
         /// Метод для нахождения площади шестиугольника
         /// </summary>
         /// <param name="perimeter">  Периметр шестиугольника  </param>
-        /// <param name="side">  Сторона шестиугольника  </param>
-        /// <param name="area">  Площадь шестиугольника  </param>
         /// <returns> Возаращет площадь шестиугольника </returns>
         public static double CorHexagon(double perimeter)
         {
+            // 
             double side = perimeter / 6;
             return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2;
         }
@@ -75,8 +80,8 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь прямоугольника  </returns>
         public static double Rectangle(double perimeter)
         {
-            double side = perimeter / 6; //меньшая сторона прямоугольника, получена из формулы P=2(a+2a)=6a => a=P/6
-            double area = side * 2 * side; //площадь прямоугольника, s=a*2a
+            double side = perimeter / 6; //меньшая сторона прямоугольника, получена из формулы P=2(a+2a) = 6a => a = P/6
+            double area = side * 2 * side; //площадь прямоугольника, s = a*2a
             return area;
         }
 
@@ -91,7 +96,7 @@ namespace ClassLibrary
             double area = Math.Pow(side, 2); //площадь квадрата, равна его стороне в квадрате
             return area;
         }
-
+        
         /// <summary>
         /// Метод для нахождения площади правильного треугольника
         /// </summary>
