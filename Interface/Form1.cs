@@ -16,7 +16,7 @@ namespace Interface
         /// <summary>
         /// обнуление стилий для дальнейшего выбора кнопки
         /// </summary>
-        private void clearStyles()
+        /*private void clearStyles()
         {
             triangleFigure.BackColor = Color.White;
             triangleFigure.ForeColor = Color.Black;
@@ -34,7 +34,7 @@ namespace Interface
             rectangleFigure.ForeColor = Color.Black;
             circleFigure.BackColor = Color.White;
             circleFigure.ForeColor = Color.Black;
-        }
+        }*/
 
         /// <summary>
         /// Обработка нажатия кнопки и вычисление площади
@@ -117,15 +117,22 @@ namespace Interface
 
         // ДАЛЕЕ ПРИМЕНЕНИЕ СТИЛИЙ ПРИ НАЖАТИИ КНОПКИ
         private void list_Click(object sender, EventArgs e)
-            {
+        {
             switch (listBox1.SelectedIndex)
             {
-                case 0:
-                    figure = "triangle";
+                case 0: figure = "triangle"; break; case 1: figure = "rhombus"; break; 
+                case 2: figure = "pentagon"; break; case 3: figure = "rectangle"; break;
+                case 4: figure = "square"; break; case 5: figure = "circle"; break;
+                case 6: figure = "hexagon"; break; 
+                case 7: 
+                    figure = "nangle"; 
+                    label2.Visible = true;
+                    nangleSides.Visible = true;
                     break;
+
             }
-            } 
-        private void triangleFigure_Click(object sender, EventArgs e)
+        } 
+        /*private void triangleFigure_Click(object sender, EventArgs e)
         {
             figure = "triangle";
             clearStyles();
@@ -180,13 +187,13 @@ namespace Interface
             hexagonFigure.BackColor = Color.Teal;
             hexagonFigure.ForeColor = Color.White;
         }
-
+        *
         private void nangleFigure_Click(object sender, EventArgs e)
         {
             figure = "nangle";
             clearStyles();
             nangleFigure.BackColor = Color.Teal;
             nangleFigure.ForeColor = Color.White;
-        }
+        }*/
     }
 }
