@@ -4,44 +4,14 @@ namespace Interface
 {
     public partial class Form1 : Form
     {
-        /// <summary>
-        /// переменная выбора фигуры
-        /// </summary>
         private static string figure = "";
         public Form1()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// обнуление стилий для дальнейшего выбора кнопки
-        /// </summary>
-        /*private void clearStyles()
-        {
-            triangleFigure.BackColor = Color.White;
-            triangleFigure.ForeColor = Color.Black;
-            rhombusFigure.BackColor = Color.White;
-            rhombusFigure.ForeColor = Color.Black;
-            squareFigure.BackColor = Color.White;
-            squareFigure.ForeColor = Color.Black;
-            pentagonFigure.BackColor = Color.White;
-            pentagonFigure.ForeColor = Color.Black;
-            hexagonFigure.BackColor = Color.White;
-            hexagonFigure.ForeColor = Color.Black;
-            nangleFigure.BackColor = Color.White;
-            nangleFigure.ForeColor = Color.Black;
-            rectangleFigure.BackColor = Color.White;
-            rectangleFigure.ForeColor = Color.Black;
-            circleFigure.BackColor = Color.White;
-            circleFigure.ForeColor = Color.Black;
-        }*/
-
-        /// <summary>
-        /// Обработка нажатия кнопки и вычисление площади
-        /// </summary>
         private void calculate_Click(object sender, EventArgs e)
         {
-
             try
             {
                 double per;
@@ -56,31 +26,31 @@ namespace Interface
                 }
                 else if (per == 0)
                 {
-                    MessageBox.Show("Введите значение периметра,\n отличное от нуля");
+                    MessageBox.Show("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,\n пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ");
                 }
 
                 switch (figure)
                 {
                     case "triangle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorTriangle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorTriangle(perimeterInput.Text).ToString();
                         break;
                     case "rhombus":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rhombus(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rhombus(perimeterInput.Text).ToString();
                         break;
                     case "square":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Square(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Square(perimeterInput.Text).ToString();
                         break;
                     case "pentagon":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorPentagon(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorPentagon(perimeterInput.Text).ToString();
                         break;
                     case "rectangle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rectangle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rectangle(perimeterInput.Text).ToString();
                         break;
                     case "circle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Circle(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Circle(perimeterInput.Text).ToString();
                         break;
                     case "hexagon":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorHexagon(per).ToString();
+                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorHexagon(perimeterInput.Text).ToString();
                         break;
                     case "nangle":
                         int sides;
@@ -88,34 +58,34 @@ namespace Interface
                         {
                             if (sides >= 3)
                             {
-                                squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(per, sides).ToString();
+                                squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(perimeterInput.Text, sides).ToString();
                             }
                             else if (sides < 0)
                             {
-                                MessageBox.Show("Количество углов не должно быть отрицательным");
+                                MessageBox.Show("ДГ®Г«ДЌГ·ДєЕ„Е€ГўГ® ГіДѓГ«Г®Гў Г­Дє Г¤Г®Г«Д‡Г­Г® ГЎЕ±Е€Гј Г®Е€Д‘ДЌГ¶Е•Е€ДєГ«ГјГ­Е±Д›");
                             }
                             else
                             {
-                                MessageBox.Show("Количество углов должно быть не меньше 3");
+                                MessageBox.Show("ДГ®Г«ДЌГ·ДєЕ„Е€ГўГ® ГіДѓГ«Г®Гў Г¤Г®Г«Д‡Г­Г® ГЎЕ±Е€Гј Г­Дє Д›ДєГ­ГјЕ™Дє 3");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Неверный ввод углов");
+                            MessageBox.Show("ГЌДєГўДєД‘Г­Е±Г© ГўГўГ®Г¤ ГіДѓГ«Г®Гў");
                         }
                         break;
                     default:
-                        MessageBox.Show("Выберите фигиру");
+                        MessageBox.Show("Г‚Е±ГЎДєД‘ДЌЕ€Дє ГґДЌДѓДЌД‘Гі");
                         break;
                 }
             }
             catch
             {
-                MessageBox.Show("Ошибка ввода периметра");//error_Catcher();
+                MessageBox.Show("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");//error_Catcher();
             }
         }
 
-        // ДАЛЕЕ ПРИМЕНЕНИЕ СТИЛИЙ ПРИ НАЖАТИИ КНОПКИ
+        // Г„Е”Г‹Д№Д№ ДЋДђДЊДљД№ГЌД№ГЌДЊД№ ЕѓЕ‡ДЊГ‹ДЊГ‰ ДЋДђДЊ ГЌЕ”Д†Е”Е‡ДЊДЊ ДГЌГЋДЋДДЊ
         private void list_Click(object sender, EventArgs e)
         {
             switch (listBox1.SelectedIndex)
@@ -132,7 +102,6 @@ namespace Interface
                     label2.Visible = true;
                     nangleSides.Visible = true;
                     break;
-
             }
         }
 
@@ -140,74 +109,5 @@ namespace Interface
         {
 
         }
-        /* private void error_Catcher()
-{
-    if (perimeterInput.Text.Contains('.')) MessageBox.Show("Неправильный ввод периметра\n Была использована '.' вместо ','");
-    if (perimeterInput.Text.Contains('-')) MessageBox.Show("Неправильный ввод периметра\n Периметр должен быть положительным числом");
-    //if (perimeterInput.Text.Contains('.')) MessageBox.Show("Неправильный ввод периметра\n Была использована '.' вместо ','")
-}
-private void triangleFigure_Click(object sender, EventArgs e)
-{
-    figure = "triangle";
-    clearStyles();
-    triangleFigure.BackColor = Color.Teal;
-    triangleFigure.ForeColor = Color.White;
-}
-
-private void rhombusFigure_Click(object sender, EventArgs e)
-{
-    figure = "rhombus";
-    clearStyles();
-    rhombusFigure.BackColor = Color.Teal;
-    rhombusFigure.ForeColor = Color.White;
-}
-
-private void squareFigure_Click(object sender, EventArgs e)
-{
-    figure = "square";
-    clearStyles();
-    squareFigure.BackColor = Color.Teal;
-    squareFigure.ForeColor = Color.White;
-}
-
-private void pentagonFigure_Click(object sender, EventArgs e)
-{
-    figure = "pentagon";
-    clearStyles();
-    pentagonFigure.BackColor = Color.Teal;
-    pentagonFigure.ForeColor = Color.White;
-}
-
-private void rectangleFigure_Click(object sender, EventArgs e)
-{
-    figure = "rectangle";
-    clearStyles();
-    rectangleFigure.BackColor = Color.Teal;
-    rectangleFigure.ForeColor = Color.White;
-}
-
-private void circleFigure_Click(object sender, EventArgs e)
-{
-    figure = "circle";
-    clearStyles();
-    circleFigure.BackColor = Color.Teal;
-    circleFigure.ForeColor = Color.White;
-}
-
-private void hexagonFigure_Click(object sender, EventArgs e)
-{
-    figure = "hexagon";
-    clearStyles();
-    hexagonFigure.BackColor = Color.Teal;
-    hexagonFigure.ForeColor = Color.White;
-}
-*
-private void nangleFigure_Click(object sender, EventArgs e)
-{
-    figure = "nangle";
-    clearStyles();
-    nangleFigure.BackColor = Color.Teal;
-    nangleFigure.ForeColor = Color.White;
-}*/
     }
 }
