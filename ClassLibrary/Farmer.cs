@@ -155,7 +155,7 @@ namespace ClassLibrary
             double side = perimeter / 3; //сторона треугольника
             double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника
             return area;
-  
+        }
         /// Метод для нахождения площади n-угольника
         /// </summary>
         /// <param name="perimeter">  Периметр n-угольника  </param>
