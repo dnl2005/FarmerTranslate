@@ -68,14 +68,15 @@ namespace ClassLibrary
         {
             //Площадь правильного пятиугольника равна пяти площадям треугольников, из которых он состоит
             //в треугольнке угол противолежащий основанию равен 360/5=72
-            //по теореме косинусов радиус описанной окружности R² = a²/(2*(1-cos(72)))
-            //Sтр = R²*sin(72)/2 = a²*sin(72)/(4*(1-cos(72)))
-            //S= 5*Sтр 
-            ErrorDispatcher(perimeter);
-            double baseTriangle = perimeter / 5; //основание треугольника 
-            double areaTriangle = Math.Pow(baseTriangle, 2) * Math.Sin(72) / (4 * (1 - Math.Cos(72))); //площадь треугольника
-            double area = 5 * areaTriangle; //площадь пятиугольника
-            return area;
+            //основание треугольника равно стороне пятиугольника a
+            //Sтр = a*R/2
+            //R = a / (2 * sin (360/2*n)), где n - кол-во сторон
+            //S = 5*Sтр
+            double baseTriangle = perimeter / 5; //основание треугольника
+            double r = baseTriangle / (2 * Math.Sin(360 / 10));//радиус описанной окружности
+            double areaTriangle = baseTriangle * r / 2; //площадь треугольника
+            double areaTotal = areaTriangle * 5// площадь пятиугольника 
+            return areaTotal;
         }
 
 
