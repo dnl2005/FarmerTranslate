@@ -1,9 +1,9 @@
-﻿using System;
+using System;
+using System.ComponentModel;
 using System.Data.SqlTypes;
+using System.Drawing;
 using System.Formats.Asn1;
-using System.Numerics;
 using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.AccessControl;
 using System.Security.Principal;
 
@@ -11,25 +11,29 @@ namespace ClassLibrary
 {
     public static class Farmer
     {
-
-
+        public static readonly string negNullPerEx = "NegativeNullPerimeterValueException";
+        public static readonly string invalidPerEx = "InvalidPerimeterValueException";
+        public static readonly string invalidSidesEx = "InvalidSidesValueNgonException";
         /// <summary>
         /// Метод для обработки общей ошибки длины периметра
         /// </summary>
         /// <param name="perimeter"> Длина периметра </param>
         /// <exception cref="Exception"> Ошибка неверной длины периметра</exception>
-        private static void ErrorDispatcher(double perimeter)
+        private static double ErrorDispatcher(string perimeter)
         {
-            if (perimeter <= 0)
+            double per;
+            if(!double.TryParse(perimeter, out per))
             {
-                throw new Exception("InvalidPerimeterException");
+                throw new Exception(invalidPerEx);
             }
-            // принимает периметр который парсится в дабл
-            // если не может - значит там строка, ошибка
-            //если меньше или равно нулю, то пиздим что периметр 
+
+            if (per <= 0)
+            {
+                throw new Exception(negNullPerEx);
+            }
+
+            return per;
         }
-
-
         /// <summary>
         /// Метод для нахождения площади ромба с углом в 60 градусов
         /// </summary>
@@ -46,7 +50,6 @@ namespace ClassLibrary
             return area;
         }
 
-
         /// <summary>
         /// Метод для нахождения площади круга
         /// </summary>
@@ -62,7 +65,6 @@ namespace ClassLibrary
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
             return area;
         }
-
 
         /// <summary>
         /// Метод для нахождения площади пятиугольника
@@ -91,8 +93,7 @@ namespace ClassLibrary
             double areaPentagon = 5 * areaTriangle;//площадь пятиугольника
             return areaPentagon;
         }
-
-
+      
         /// <summary>
         /// Метод для нахождения площади шестиугольника
         /// </summary>
@@ -154,34 +155,30 @@ namespace ClassLibrary
             double side = perimeter / 3; //сторона треугольника
             double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника
             return area;
-        }
-
-
-        /// <summary>
+  
         /// Метод для нахождения площади n-угольника
         /// </summary>
         /// <param name="perimeter">  Периметр n-угольника  </param>
         /// <param name="sides">  Кл-во сторон n-угольника  </param>
         /// <returns>  Возаращет площадь n-угольника  </returns>
-        public static double CorNgon(double perimeter, int sides)
+        public static double CorNgon(string perimeter, int sides)
         {
-            //площадь правильного n-угольника состоит из нескольких еругольников: Sn = n*Sтр
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / sides;
+            double areaTotal = 0;
+            //площадь n-угольника состоит из нескольких теругольников: Sn = n*Sтр
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
-
-            double side = perimeter / sides; //сторона n-угольника
-            double areaTotal = 0; //площадь n-угольника
-
-            ErrorDispatcher(perimeter);
-            if (sides > 4)
+            
+            if (sides >4)
             {
                 double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
                 areaTotal = (sides) * areaTriangle;
                 return areaTotal;
             }
             else if (sides == 4)
-            {
+            { 
                 areaTotal = side * side;
                 return areaTotal;
             }
@@ -191,16 +188,11 @@ namespace ClassLibrary
                 areaTotal = areaTriangle;
                 return areaTotal;
             }
-            else if (sides == 2 || sides == 1)
+            else if(sides == 2 || sides == 1 || sides <= 0)
             {
-                throw new Exception("SidesNgonException");
-            }
-            else if (sides >= 0)
-            {
-                throw new Exception("InvalidSidesValueNgonException");
+                throw new Exception(invalidSidesEx);
             }
             return 0;
         }
     }
 }
-
