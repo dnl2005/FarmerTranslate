@@ -12,6 +12,21 @@ namespace ClassLibrary
     public static class Farmer
     {
 
+
+        /// <summary>
+        /// Метод для обработки общей ошибки длины периметра
+        /// </summary>
+        /// <param name="perimeter"> Длина периметра </param>
+        /// <exception cref="Exception"> Ошибка неверной длины периметра</exception>
+        private static void ErrorDispatcher(double perimeter)
+        {
+            if (perimeter <= 0)
+            {
+                throw new Exception("InvalidPerimeterException");
+            }
+        }
+
+
         /// <summary>
         /// Метод для нахождения площади ромба с углом в 60 градусов
         /// </summary>
@@ -20,12 +35,13 @@ namespace ClassLibrary
         public static double Rhombus(double perimeter)
         {
             //площадь ромба равна площади двух равных правильных треугольников Sтр, из которых он состоит
-            //сторона такого треугольника равна стороне ромба => a=P/4*3
+            //сторона такого треугольника равна стороне ромба => a = P/4*3
             //Sромб = 2*Sтр
             double corTrianglePerimeter = perimeter / 4 * 3; //сторона 1 из 2 треугольников
             double area = CorTriangle(corTrianglePerimeter) * 2; // площадь ромба
             return area;
         }
+
 
         /// <summary>
         /// Метод для нахождения площади круга
@@ -35,12 +51,13 @@ namespace ClassLibrary
         public static double Circle(double perimeter)
         {
             //площадь круга находится через его радиус 
-            //r = P/(2*π)
-            //s = r²*π
+            //радиус r = P/(2*π)
+            //площадь S = r²*π
             double radius = perimeter / (2 * Math.PI); // радиус круга
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
             return area;
         }
+
 
         /// <summary>
         /// Метод для нахождения площади пятиугольника
@@ -55,11 +72,12 @@ namespace ClassLibrary
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
-            //ErrorDispatcher(perimeter);
+            ErrorDispatcher(perimeter);
             double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
             areaTotal = 5 * areaTriangle;
             return areaTotal;
         }
+
 
         /// <summary>
         /// Метод для нахождения площади шестиугольника
@@ -73,6 +91,7 @@ namespace ClassLibrary
             return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2;
         }
 
+
         /// <summary>
         /// Метод для нахождения площади прямоугольника, где одна сторона в 2 раза больше другой 
         /// </summary>
@@ -84,6 +103,7 @@ namespace ClassLibrary
             double area = side * 2 * side; //площадь прямоугольника, s = a*2a
             return area;
         }
+
 
         /// <summary>
         /// Метод для нахождения площади ``квадрата
@@ -97,6 +117,7 @@ namespace ClassLibrary
             return area;
         }
         
+
         /// <summary>
         /// Метод для нахождения площади правильного треугольника
         /// </summary>
@@ -109,17 +130,48 @@ namespace ClassLibrary
             return area;
         }
 
+
         /// <summary>
         /// Метод для нахождения площади n-угольника
         /// </summary>
         /// <param name="perimeter">  Периметр n-угольника  </param>
-        /// <param name="side">  Сторона n-угольника  </param>
-        /// <param name="area">  Площадь n-угольника  </param>
-        /// <returns>  Возаращет площадь n-уго  </returns>
+        /// <param name="sides">  Кл-во сторон n-угольника  </param>
+        /// <returns>  Возаращет площадь n-угольника  </returns>
         public static double CorNgon(double perimeter, int sides)
         {
             double side = perimeter / sides;
-            return sides * Math.Pow(side, 2) / Math.Tan(Math.PI / sides) / 4;
+            double areaTotal = 0;
+            //площадь n-угольника состоит из нескольких теругольников: Sn = n*Sтр
+            //площадь треугольника S = 1/2 *a*h
+            //высота равностороннего треугольника(формула) h = a*√3/2
+            //площадь равностороннего треугольника S = a^2*√3/4
+            ErrorDispatcher(perimeter);
+            if (sides > 4)
+            {
+                double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
+                areaTotal = (sides) * areaTriangle;
+                return areaTotal;
+            }
+            else if (sides == 4)
+            {
+                areaTotal = side * side;
+                return areaTotal;
+            }
+            else if (sides == 3)
+            {
+                double areaTriangle = side * side * Math.Sqrt(3) / 4;
+                areaTotal = areaTriangle;
+                return areaTotal;
+            }
+            else if (sides == 2 || sides == 1)
+            {
+                throw new Exception("SidesNgonException");
+            }
+            else if (sides >= 0)
+            {
+                throw new Exception("InvalidSidesValueNgonException");
+            }
+            return 0;
         }
     }
 }
