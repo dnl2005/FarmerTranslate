@@ -1,11 +1,16 @@
 using System;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data.SqlTypes;
 using System.Drawing;
 using System.Formats.Asn1;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using System.Text.Json.Serialization.Metadata;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClassLibrary
 {
@@ -22,7 +27,7 @@ namespace ClassLibrary
         private static double ErrorDispatcher(string perimeter)
         {
             double per;
-            if(!double.TryParse(perimeter, out per))
+            if (!double.TryParse(perimeter, out per))
             {
                 throw new Exception(invalidPerEx);
             }
@@ -48,7 +53,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double corTrianglePerimeter = per / 4 * 3; //сторона 1 из 2 треугольников
             double area = CorTriangle(corTrianglePerimeter.ToString()) * 2; // площадь ромба
-            return area;
+            return ReturnArea(area);
         }
         /// <summary>
         /// Метод для нахождения площади круга
@@ -64,7 +69,9 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double radius = per / (2 * Math.PI); // радиус круга
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
-            return area;
+            //return area;
+            return ReturnArea(area);
+
         }
 
         /// <summary>
@@ -95,7 +102,7 @@ namespace ClassLibrary
             double areaPentagon = 5 * areaTriangle;//площадь пятиугольника
             return areaPentagon;
         }
-      
+
         /// <summary>
         /// Метод для нахождения площади шестиугольника
         /// </summary>
@@ -145,7 +152,7 @@ namespace ClassLibrary
             double area = Math.Pow(side, 2); //площадь квадрата
             return area;
         }
-        
+
 
         /// <summary>
         /// Метод для нахождения площади правильного треугольника
@@ -175,15 +182,15 @@ namespace ClassLibrary
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
-            
-            if (sides >4)
+
+            if (sides > 4)
             {
                 double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
                 areaTotal = (sides) * areaTriangle;
                 return areaTotal;
             }
             else if (sides == 4)
-            { 
+            {
                 areaTotal = side * side;
                 return areaTotal;
             }
@@ -193,11 +200,82 @@ namespace ClassLibrary
                 areaTotal = areaTriangle;
                 return areaTotal;
             }
-            else if(sides == 2 || sides == 1 || sides <= 0)
+            else if (sides == 2 || sides == 1 || sides <= 0)
             {
                 throw new Exception(invalidSidesEx);
             }
             return 0;
         }
+
+        public static double ReturnArea(double area)
+        {
+            string areaRound = area.ToString();
+            int comma_index = areaRound.IndexOf(',');
+            if (comma_index == -1)
+            {
+                return area;
+            }
+            string areaInt = areaRound[0..(comma_index + 1)];
+            areaRound = areaRound[(comma_index + 1)..^0];
+
+            int nonZeroNumber_index = -100;
+            for (int i = 0; i < areaRound.Length; i++)
+            {
+                if (areaRound[i] != '0')
+                {
+                    nonZeroNumber_index = i;
+                    break;
+                }
+            }
+            if (nonZeroNumber_index == 0)
+            {
+                if (areaRound.Length > 2)
+                {
+
+                    if (areaRound[2] - '0' < 5)
+                    {
+                        areaRound = areaInt + areaRound[0..2];
+                        return double.Parse(areaRound);
+                    }
+                    else
+                    {
+                        int roundNumber = int.Parse(areaRound[nonZeroNumber_index + 1].ToString()) + 1;
+                        areaRound = areaInt + areaRound[0..1] + roundNumber.ToString();
+                        return double.Parse(areaRound);
+                    }
+                }
+                else
+                {
+                    areaRound = areaInt + areaRound;
+                    return double.Parse(areaRound);
+                }
+            }
+            else
+            {
+                if (areaRound.Length - nonZeroNumber_index > 2)
+                {
+
+                    if (areaRound[nonZeroNumber_index + 2] - '0' < 5)
+                    {
+                        areaRound = areaInt + areaRound[0..(nonZeroNumber_index + 2)];
+                        return double.Parse(areaRound);
+                    }
+                    else
+                    {
+                        int roundNumber = int.Parse(areaRound[nonZeroNumber_index + 1].ToString()) + 1;
+                        areaRound = areaInt + areaRound[0..(nonZeroNumber_index + 1)] + roundNumber.ToString();
+                        return double.Parse(areaRound);
+                    }
+                }
+                else
+                {
+                    areaRound = areaInt + areaRound[0..^0];
+                    return double.Parse(areaRound);
+                }
+            }
+        }   
+
+        
     }
 }
+    
