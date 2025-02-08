@@ -19,7 +19,7 @@ namespace ClassLibrary
         public static double Rhombus(double perimeter)
         {
             double corTrianglePerimeter = perimeter / 4 * 3; //сторона 1 из 2 треугольников, из которых состоит ромб
-            double area = CorTriangle(corTrianglePerimeter) * 2; // площадь ромба, s=2*Sтр`ё
+            double area = CorTriangle(corTrianglePerimeter) * 2; // площадь ромба, s=2*Sтр
             return area;
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace ClassLibrary
         public static double Circle(double perimeter)
         {
             double radius = perimeter / (2 * Math.PI); // радиус круга, r=  p/(2*Пи)
-            double area = Math.Pow(radius, 2) * Math.PI; //площадь ромба, s= r^2*Пи
+            double area = Math.Pow(radius, 2) * Math.PI; //площадь круга, s= r^2*Пи
             return area;
         }
 
