@@ -66,16 +66,16 @@ namespace ClassLibrary
         /// <returns> Возаращет площадь пятиугольника </returns>
         public static double CorPentagon(double perimeter)
         {
-            double side = perimeter / 5;
-            double areaTotal = 0;
-            //площадь 5 состоит из 5 правильных теругольников: Sn = n*Sтр
-            //площадь треугольника S = 1/2 *a*h
-            //высота равностороннего треугольника(формула) h = a*√3/2
-            //площадь равностороннего треугольника S = a^2*√3/4
+            //Площадь правильного пятиугольника равна пяти площадям треугольников, из которых он состоит
+            //в треугольнке угол противолежащий основанию равен 360/5=72
+            //по теореме косинусов радиус описанной окружности R² = a²/(2*(1-cos(72)))
+            //Sтр = R²*sin(72)/2 = a²*sin(72)/(4*(1-cos(72)))
+            //S= 5*Sтр 
             ErrorDispatcher(perimeter);
-            double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
-            areaTotal = 5 * areaTriangle;
-            return areaTotal;
+            double baseTriangle = perimeter / 5; //основание треугольника 
+            double areaTriangle = Math.Pow(baseTriangle, 2) * Math.Sin(72) / (4 * (1 - Math.Cos(72))); //площадь треугольника
+            double area = 5 * areaTriangle; //площадь пятиугольника
+            return area;
         }
 
 
