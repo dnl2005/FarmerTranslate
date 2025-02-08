@@ -40,6 +40,7 @@ namespace ClassLibrary
             //площадь ромба равна площади двух равных правильных треугольников Sтр, из которых он состоит
             //сторона такого треугольника равна стороне ромба => a = P/4*3
             //Sромб = 2*Sтр
+
             double corTrianglePerimeter = perimeter / 4 * 3; //сторона 1 из 2 треугольников
             double area = CorTriangle(corTrianglePerimeter) * 2; // площадь ромба
             return area;
@@ -56,6 +57,7 @@ namespace ClassLibrary
             //площадь круга находится через его радиус 
             //радиус r = P/(2*π)
             //площадь S = r²*π
+
             double radius = perimeter / (2 * Math.PI); // радиус круга
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
             return area;
@@ -98,9 +100,12 @@ namespace ClassLibrary
         /// <returns> Возаращет площадь шестиугольника </returns>
         public static double CorHexagon(double perimeter)
         {
-            // 
-            double side = perimeter / 6;
-            return 3 * Math.Sqrt(3) * Math.Pow(side, 2) / 2;
+            //площадь шестиугольника равна площадям 6 правильных треугольников, которые его составляют
+            //периметр таких треугольников равен трем сторонам шестиугольника
+
+            double perTriangle = perimeter / 2; //периметр треугольника
+            double area = 6 * CorTriangle(perTriangle);
+            return area;
         }
 
 
@@ -111,8 +116,11 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь прямоугольника  </returns>
         public static double Rectangle(double perimeter)
         {
-            double side = perimeter / 6; //меньшая сторона прямоугольника, получена из формулы P=2(a+2a) = 6a => a = P/6
-            double area = side * 2 * side; //площадь прямоугольника, s = a*2a
+            //меньшая сторона прямоугольника вычисляется по формуле P=2(a+2a) = 6a => a = P/6
+            //площадь прямоугольника равна произведению его сторон a*2a
+
+            double side = perimeter / 6; //меньшая сторона прямоугольника
+            double area = side * 2 * side; //площадь прямоугольника
             return area;
         }
 
@@ -124,8 +132,11 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь квадрата  </returns>
         public static double Square(double perimeter)
         {
-            double side = perimeter / 4; //сторона квадрата, равна 1/4 периметра 
-            double area = Math.Pow(side, 2); //площадь квадрата, равна его стороне в квадрате
+            //сторона квадрата равна 1/4 его периметра 
+            //площадь квадрата равна его стороне в квадрате
+
+            double side = perimeter / 4; //сторона квадрата
+            double area = Math.Pow(side, 2); //площадь квадрата
             return area;
         }
         
@@ -137,8 +148,11 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь правильного треугольника  </returns>
         public static double CorTriangle(double perimeter)
         {
-            double side = perimeter / 3; //сторона треугольника, a=p/3
-            double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника, s=√3*a²/4
+            //сторона правильного треугольника вычисляется по a=p/3
+            //площадь правильного треугольника вычисялется по s=√3*a²/4
+
+            double side = perimeter / 3; //сторона треугольника
+            double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника
             return area;
         }
 
