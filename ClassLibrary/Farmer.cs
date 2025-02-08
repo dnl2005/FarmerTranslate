@@ -69,7 +69,8 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double radius = per / (2 * Math.PI); // радиус круга
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
-            //return area;
+
+
             return ReturnArea(area);
 
         }
@@ -100,7 +101,7 @@ namespace ClassLibrary
             double areaTriangle = halfSide * h; //площадь равнобедренного треугольника 
 
             double areaPentagon = 5 * areaTriangle;//площадь пятиугольника
-            return areaPentagon;
+            return ReturnArea(areaPentagon);
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double perTriangle = per / 2; //периметр треугольника
             double area = 6 * CorTriangle(perTriangle.ToString());
-            return area;
+            return ReturnArea(area);
         }
 
 
@@ -133,7 +134,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double side = per / 6; //меньшая сторона прямоугольника
             double area = side * 2 * side; //площадь прямоугольника
-            return area;
+            return ReturnArea(area);
         }
 
 
@@ -150,7 +151,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double side = per / 4; //сторона квадрата
             double area = Math.Pow(side, 2); //площадь квадрата
-            return area;
+            return ReturnArea(area);
         }
 
 
@@ -166,7 +167,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double side = per / 3; //сторона треугольника
             double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника
-            return area;
+            return ReturnArea(area);
         }
         /// Метод для нахождения площади n-угольника
         /// </summary>
@@ -187,18 +188,18 @@ namespace ClassLibrary
             {
                 double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
                 areaTotal = (sides) * areaTriangle;
-                return areaTotal;
+                return ReturnArea(areaTotal);
             }
             else if (sides == 4)
             {
                 areaTotal = side * side;
-                return areaTotal;
+                return ReturnArea(areaTotal);
             }
             else if (sides == 3)
             {
                 double areaTriangle = side * side * Math.Sqrt(3) / 4;
                 areaTotal = areaTriangle;
-                return areaTotal;
+                return ReturnArea(areaTotal);
             }
             else if (sides == 2 || sides == 1 || sides <= 0)
             {
@@ -207,75 +208,61 @@ namespace ClassLibrary
             return 0;
         }
 
+
+        /// <summary>
+        /// Метод для округления возвращаемого значения площади фигуры до 2 знаков после запятой
+        /// </summary>
+        /// <param name="area">  Площадь фигуры  </param>
+        /// <returns>  Возвращает значение площади с точностью до 2 знаков после запятой  </returns>
         public static double ReturnArea(double area)
         {
-            string areaRound = area.ToString();
-            int comma_index = areaRound.IndexOf(',');
-            if (comma_index == -1)
+            //принцип работы - ищется запятая, разделяющая дробную и целую части числа
+            //если таковой нет, выводится площадь без изменений
+            //если она есть, число делится на целую и дробные части
+            //дробная часть округляется так, чтобы не осталось незначащих нолей и было округление второй цифры после запятой
+
+            string areaRound = area.ToString(); //  перевод площади в строку 
+            int comma_index = areaRound.IndexOf(','); // индекс запятой в дробном
+
+
+            // если запятой нет или число имеет вид *,00, то площадь не меняется
+            if (comma_index == -1 || areaRound[comma_index + 2] == 0) 
             {
                 return area;
             }
-            string areaInt = areaRound[0..(comma_index + 1)];
-            areaRound = areaRound[(comma_index + 1)..^0];
+            else 
+            {
+                string areaInt = areaRound[0..(comma_index + 1)]; //иначе выделяется целая часть
+                areaRound = areaRound[(comma_index + 1)..^0]; // и выделяется дробная часть
 
-            int nonZeroNumber_index = -100;
-            for (int i = 0; i < areaRound.Length; i++)
-            {
-                if (areaRound[i] != '0')
-                {
-                    nonZeroNumber_index = i;
-                    break;
-                }
-            }
-            if (nonZeroNumber_index == 0)
-            {
+                // рассматривается случай, когда в дробной части всего 2 цифры
                 if (areaRound.Length > 2)
                 {
+                    // если это ложно, то идет округление 
 
-                    if (areaRound[2] - '0' < 5)
+                    if (areaRound[2] - '0' < 5) // случай без округления
                     {
-                        areaRound = areaInt + areaRound[0..2];
+                        areaRound = areaInt + areaRound[0..2]; 
                         return double.Parse(areaRound);
                     }
-                    else
+                    else // случай с округлением
                     {
-                        int roundNumber = int.Parse(areaRound[nonZeroNumber_index + 1].ToString()) + 1;
-                        areaRound = areaInt + areaRound[0..1] + roundNumber.ToString();
+                        int roundNumber = int.Parse(areaRound[1].ToString()) + 1;
+                        areaRound = areaInt + areaRound[0] + roundNumber.ToString();  
                         return double.Parse(areaRound);
                     }
                 }
-                else
+                else  //случай с 2 цифрами в дробной части числа
                 {
                     areaRound = areaInt + areaRound;
-                    return double.Parse(areaRound);
+                    return double.Parse(areaRound); 
                 }
-            }
-            else
-            {
-                if (areaRound.Length - nonZeroNumber_index > 2)
-                {
 
-                    if (areaRound[nonZeroNumber_index + 2] - '0' < 5)
-                    {
-                        areaRound = areaInt + areaRound[0..(nonZeroNumber_index + 2)];
-                        return double.Parse(areaRound);
-                    }
-                    else
-                    {
-                        int roundNumber = int.Parse(areaRound[nonZeroNumber_index + 1].ToString()) + 1;
-                        areaRound = areaInt + areaRound[0..(nonZeroNumber_index + 1)] + roundNumber.ToString();
-                        return double.Parse(areaRound);
-                    }
-                }
-                else
-                {
-                    areaRound = areaInt + areaRound[0..^0];
-                    return double.Parse(areaRound);
-                }
             }
-        }   
 
-        
+
+        }
+
     }
 }
     
