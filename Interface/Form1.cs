@@ -41,6 +41,7 @@ namespace Interface
         /// </summary>
         private void calculate_Click(object sender, EventArgs e)
         {
+              
             try
             {
                 double per;
@@ -115,7 +116,15 @@ namespace Interface
         }
 
         // ƒ¿À≈≈ œ–»Ã≈Õ≈Õ»≈ —“»À»… œ–» Õ¿∆¿“»»  ÕŒœ »
-
+        private void list_Click(object sender, EventArgs e)
+            {
+            switch (listBox1.SelectedIndex)
+            {
+                case 0:
+                    figure = "triangle";
+                    break;
+            }
+            } 
         private void triangleFigure_Click(object sender, EventArgs e)
         {
             figure = "triangle";
