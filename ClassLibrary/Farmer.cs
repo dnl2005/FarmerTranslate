@@ -81,9 +81,9 @@ namespace ClassLibrary
 
             double baseTriangle = perimeter / 5; // основание треугольника
             double angleDeg = 36.0; //угол прямоугольного треугольника возле центра окр в градусах
-            double halfSide = baseTriangle / 2.0; //катет треугольника 
+            double halfSide = baseTriangle / 2; //катет треугольника, не являющийся высотой 
 
-            double angleRad = angleDeg * Math.PI / 180.0; //перевод угла в радианы
+            double angleRad = angleDeg * Math.PI / 180; //перевод угла в радианы
             double h = halfSide / Math.Tan(angleRad); //нахождение высоты
 
             double areaTriangle = halfSide * h; //площадь равнобедренного треугольника 
@@ -165,12 +165,14 @@ namespace ClassLibrary
         /// <returns>  Возаращет площадь n-угольника  </returns>
         public static double CorNgon(double perimeter, int sides)
         {
-            double side = perimeter / sides;
-            double areaTotal = 0;
-            //площадь n-угольника состоит из нескольких теругольников: Sn = n*Sтр
+            //площадь правильного n-угольника состоит из нескольких еругольников: Sn = n*Sтр
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
+
+            double side = perimeter / sides; //сторона n-угольника
+            double areaTotal = 0; //площадь n-угольника
+
             ErrorDispatcher(perimeter);
             if (sides > 4)
             {
