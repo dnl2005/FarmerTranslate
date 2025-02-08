@@ -224,13 +224,11 @@ namespace ClassLibrary
             string areaRound = area.ToString(); //  перевод площади в строку 
             int comma_index = areaRound.IndexOf(','); // индекс запятой в дробном
 
-
-            // если запятой нет или число имеет вид *,00, то площадь не меняется
             if (comma_index == -1 || areaRound[comma_index + 2] == 0)
             {
                 return area;
             }
-            else
+            else 
             {
                 return Math.Round(area,2);
             }
