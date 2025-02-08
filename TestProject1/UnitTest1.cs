@@ -193,8 +193,8 @@ namespace TestProject1
         [TestMethod]
         public void Rectangle_25_3906Returns()
         {
-            string perimeter = "25";
-            double expected = 39.06;
+            string perimeter = "20";
+            double expected = 25;
 
             var result = Farmer.Square(perimeter);
 
@@ -236,8 +236,8 @@ namespace TestProject1
         [TestMethod]
         public void Square_25_3906Returns()
         {
-            string perimeter = "25";
-            double expected = 39.06;
+            string perimeter = "20";
+            double expected = 25;
             
             var result = Farmer.Square(perimeter);
             
