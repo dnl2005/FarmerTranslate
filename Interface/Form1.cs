@@ -20,13 +20,13 @@ namespace Interface
                     throw new Exception();
                 }
 
-                if(per < 0)
+                if (per < 0)
                 {
                     throw new Exception();
                 }
                 else if (per == 0)
                 {
-                    MessageBox.Show("Ââĺäčňĺ ďĺđčěĺňđ");
+                    MessageBox.Show("������� �������� ���������,\n �������� �� ����");
                 }
 
                 switch (figure)
@@ -56,11 +56,11 @@ namespace Interface
                         int sides;
                         if (int.TryParse(nangleSides.Text, out sides))
                         {
-                            if(sides >= 3)
+                            if (sides >= 3)
                             {
                                 squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(perimeterInput.Text, sides).ToString();
                             }
-                            else if(sides < 0)
+                            else if (sides < 0)
                             {
                                 MessageBox.Show("Ęîëč÷ĺńňâî óăëîâ íĺ äîëćíî áűňü îňđčöŕňĺëüíűě");
                             }
@@ -81,7 +81,7 @@ namespace Interface
             }
             catch
             {
-                MessageBox.Show("Îřčáęŕ ââîäŕ ďĺđčěĺňđŕ");
+                MessageBox.Show("������ ����� ���������");//error_Catcher();
             }
         }
 
@@ -90,16 +90,24 @@ namespace Interface
         {
             switch (listBox1.SelectedIndex)
             {
-                case 0: figure = "triangle"; break; case 1: figure = "rhombus"; break; 
-                case 2: figure = "pentagon"; break; case 3: figure = "rectangle"; break;
-                case 4: figure = "square"; break; case 5: figure = "circle"; break;
-                case 6: figure = "hexagon"; break; 
-                case 7: 
-                    figure = "nangle"; 
+                case 0: figure = "triangle"; break;
+                case 1: figure = "rhombus"; break;
+                case 2: figure = "pentagon"; break;
+                case 3: figure = "rectangle"; break;
+                case 4: figure = "square"; break;
+                case 5: figure = "circle"; break;
+                case 6: figure = "hexagon"; break;
+                case 7:
+                    figure = "nangle";
                     label2.Visible = true;
                     nangleSides.Visible = true;
                     break;
             }
-        } 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

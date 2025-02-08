@@ -38,6 +38,7 @@
             perimeterLabel = new Label();
             squareLabel = new Label();
             listBox1 = new ListBox();
+            helpProvider1 = new HelpProvider();
             SuspendLayout();
             // 
             // label1
@@ -53,9 +54,11 @@
             // perimeterInput
             // 
             perimeterInput.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            helpProvider1.SetHelpString(perimeterInput, "1. Введите значение периметра");
             perimeterInput.Location = new Point(152, 176);
             perimeterInput.Margin = new Padding(3, 4, 3, 4);
             perimeterInput.Name = "perimeterInput";
+            helpProvider1.SetShowHelp(perimeterInput, true);
             perimeterInput.Size = new Size(143, 38);
             perimeterInput.TabIndex = 1;
             perimeterInput.Text = "16";
@@ -71,9 +74,11 @@
             // 
             // calculate
             // 
+            helpProvider1.SetHelpString(calculate, "3. Нажмите чтобы расчитать значение площади");
             calculate.Location = new Point(374, 167);
             calculate.Margin = new Padding(3, 4, 3, 4);
             calculate.Name = "calculate";
+            helpProvider1.SetShowHelp(calculate, true);
             calculate.Size = new Size(137, 47);
             calculate.TabIndex = 3;
             calculate.Text = "Рассчитать";
@@ -93,9 +98,11 @@
             // nangleSides
             // 
             nangleSides.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            helpProvider1.SetHelpString(nangleSides, "Введите количество углов для N-угольника");
             nangleSides.Location = new Point(458, 252);
             nangleSides.Margin = new Padding(3, 4, 3, 4);
             nangleSides.Name = "nangleSides";
+            helpProvider1.SetShowHelp(nangleSides, true);
             nangleSides.Size = new Size(114, 38);
             nangleSides.TabIndex = 14;
             nangleSides.Text = "3";
@@ -136,10 +143,12 @@
             // 
             listBox1.Font = new Font("MS Reference Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             listBox1.FormattingEnabled = true;
+            helpProvider1.SetHelpString(listBox1, "2. Выберите фигуру, для которой необходимо рассчитать площадь");
             listBox1.ItemHeight = 34;
             listBox1.Items.AddRange(new object[] { "Треугольник", "Ромб", "Пятиугольник", "Прямоугольник", "Квадрат", "Круг", "Шестиугольник", "N-угольник" });
             listBox1.Location = new Point(152, 410);
             listBox1.Name = "listBox1";
+            helpProvider1.SetShowHelp(listBox1, true);
             listBox1.Size = new Size(581, 140);
             listBox1.TabIndex = 18;
             listBox1.Click += list_Click;
@@ -160,7 +169,10 @@
             Controls.Add(squareOutput);
             Controls.Add(perimeterInput);
             Controls.Add(label1);
+            HelpButton = true;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form1";
             Text = "       ";
             ResumeLayout(false);
@@ -179,5 +191,6 @@
         private Label perimeterLabel;
         private Label squareLabel;
         private ListBox listBox1;
+        private HelpProvider helpProvider1;
     }
 }
