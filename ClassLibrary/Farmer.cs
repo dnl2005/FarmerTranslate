@@ -218,51 +218,24 @@ namespace ClassLibrary
         {
             //принцип работы - ищется запятая, разделяющая дробную и целую части числа
             //если таковой нет, выводится площадь без изменений
-            //если она есть, число делится на целую и дробные части
-            //дробная часть округляется так, чтобы не осталось незначащих нолей и было округление второй цифры после запятой
+            //если она есть и число не имеет вид '*,00',
+            //то число округляется с точностью до 2 знаков после запятой
 
             string areaRound = area.ToString(); //  перевод площади в строку 
             int comma_index = areaRound.IndexOf(','); // индекс запятой в дробном
 
 
             // если запятой нет или число имеет вид *,00, то площадь не меняется
-            if (comma_index == -1 || areaRound[comma_index + 2] == 0) 
+            if (comma_index == -1 || areaRound[comma_index + 2] == 0)
             {
                 return area;
             }
-            else 
+            else
             {
-                string areaInt = areaRound[0..(comma_index + 1)]; //иначе выделяется целая часть
-                areaRound = areaRound[(comma_index + 1)..^0]; // и выделяется дробная часть
-
-                // рассматривается случай, когда в дробной части всего 2 цифры
-                if (areaRound.Length > 2)
-                {
-                    // если это ложно, то идет округление 
-
-                    if (areaRound[2] - '0' < 5) // случай без округления
-                    {
-                        areaRound = areaInt + areaRound[0..2]; 
-                        return double.Parse(areaRound);
-                    }
-                    else // случай с округлением
-                    {
-                        int roundNumber = int.Parse(areaRound[1].ToString()) + 1;
-                        areaRound = areaInt + areaRound[0] + roundNumber.ToString();  
-                        return double.Parse(areaRound);
-                    }
-                }
-                else  //случай с 2 цифрами в дробной части числа
-                {
-                    areaRound = areaInt + areaRound;
-                    return double.Parse(areaRound); 
-                }
-
+                return Math.Round(area,2);
             }
 
-
         }
-
     }
 }
     
