@@ -22,7 +22,6 @@ namespace ClassLibrary
             double side = perimeter / 4;
             return side * side;
         }
-
         /// <summary>
         /// Метод для нахождения площади круга
         /// </summary>
