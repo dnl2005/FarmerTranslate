@@ -39,14 +39,15 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр ромба  </param>  
         /// <returns> Возаращет площадь ромба </returns>
-        public static double Rhombus(double perimeter)
+        public static double Rhombus(string perimeter)
         {
             //площадь ромба равна площади двух равных правильных треугольников Sтр, из которых он состоит
             //сторона такого треугольника равна стороне ромба => a = P/4*3
             //Sромб = 2*Sтр
 
-            double corTrianglePerimeter = perimeter / 4 * 3; //сторона 1 из 2 треугольников
-            double area = CorTriangle(corTrianglePerimeter) * 2; // площадь ромба
+            double per = ErrorDispatcher(perimeter.ToString());
+            double corTrianglePerimeter = per / 4 * 3; //сторона 1 из 2 треугольников
+            double area = CorTriangle(corTrianglePerimeter.ToString()) * 2; // площадь ромба
             return area;
         }
 
@@ -55,13 +56,14 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр круга  </param>
         /// <returns> Возаращет площадь круга </returns>
-        public static double Circle(double perimeter)
+        public static double Circle(string perimeter)
         {
             //площадь круга находится через его радиус 
             //радиус r = P/(2*π)
             //площадь S = r²*π
 
-            double radius = perimeter / (2 * Math.PI); // радиус круга
+            double per = ErrorDispatcher(perimeter.ToString());
+            double radius = per / (2 * Math.PI); // радиус круга
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
             return area;
         }
@@ -71,7 +73,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр пятиугольника  </param>
         /// <returns> Возаращет площадь пятиугольника </returns>
-        public static double CorPentagon(double perimeter)
+        public static double CorPentagon(string perimeter)
         {
             // площадь равнобедренного треугольника состоит из 2 равных прямоугольных треугольников
             // один из углов таких треугольников равен 36 (тот, что ближе к центру описанной окр)
@@ -81,7 +83,8 @@ namespace ClassLibrary
             // площадь равнобедренного треугольника равна 2 * (1/2) * (a/2)  * h = a/2*h
             // площадь пятиугольника = 5 * площадь одного треугольника
 
-            double baseTriangle = perimeter / 5; // основание треугольника
+            double per = ErrorDispatcher(perimeter.ToString());
+            double baseTriangle = per / 5; // основание треугольника
             double angleDeg = 36.0; //угол прямоугольного треугольника возле центра окр в градусах
             double halfSide = baseTriangle / 2; //катет треугольника, не являющийся высотой 
 
@@ -99,13 +102,14 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр шестиугольника  </param>
         /// <returns> Возаращет площадь шестиугольника </returns>
-        public static double CorHexagon(double perimeter)
+        public static double CorHexagon(string perimeter)
         {
             //площадь шестиугольника равна площадям 6 правильных треугольников, которые его составляют
             //периметр таких треугольников равен трем сторонам шестиугольника
 
-            double perTriangle = perimeter / 2; //периметр треугольника
-            double area = 6 * CorTriangle(perTriangle);
+            double per = ErrorDispatcher(perimeter.ToString());
+            double perTriangle = per / 2; //периметр треугольника
+            double area = 6 * CorTriangle(perTriangle.ToString());
             return area;
         }
 
@@ -115,12 +119,13 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр прямоугольника  </param>
         /// <returns>  Возаращет площадь прямоугольника  </returns>
-        public static double Rectangle(double perimeter)
+        public static double Rectangle(string perimeter)
         {
             //меньшая сторона прямоугольника вычисляется по формуле P=2(a+2a) = 6a => a = P/6
             //площадь прямоугольника равна произведению его сторон a*2a
 
-            double side = perimeter / 6; //меньшая сторона прямоугольника
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / 6; //меньшая сторона прямоугольника
             double area = side * 2 * side; //площадь прямоугольника
             return area;
         }
@@ -131,12 +136,13 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр квадрата  </param>
         /// <returns>  Возаращет площадь квадрата  </returns>
-        public static double Square(double perimeter)
+        public static double Square(string perimeter)
         {
             //сторона квадрата равна 1/4 его периметра 
             //площадь квадрата равна его стороне в квадрате
 
-            double side = perimeter / 4; //сторона квадрата
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / 4; //сторона квадрата
             double area = Math.Pow(side, 2); //площадь квадрата
             return area;
         }
@@ -147,12 +153,12 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="perimeter">  Периметр правильного треугольника  </param> 
         /// <returns>  Возаращет площадь правильного треугольника  </returns>
-        public static double CorTriangle(double perimeter)
+        public static double CorTriangle(string perimeter)
         {
             //сторона правильного треугольника вычисляется по a=p/3
             //площадь правильного треугольника вычисялется по s=√3*a²/4
-
-            double side = perimeter / 3; //сторона треугольника
+            double per = ErrorDispatcher(perimeter.ToString());
+            double side = per / 3; //сторона треугольника
             double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника
             return area;
         }
