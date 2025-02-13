@@ -13,7 +13,7 @@ namespace TestProject1
         // ШАБЛОН НАПИСАНИЯ НАЗВАНИЙ ТЕСТОВ:
         // НазваниеФигуры_вход_ожидаемыйвыход
 
-        // приколы для ромба из двух правильных треугольников
+        // тесты для ромба из двух правильных треугольников
         [TestMethod]
         public void Rhombus_16_1386Returns()
         {
@@ -21,7 +21,7 @@ namespace TestProject1
             string perimeter = "16";
             double expected = 13.86;
             //Действие
-            var result = Farmer.Square(perimeter);
+            var result = Farmer.Rhombus(perimeter);
             //Проверка
             Assert.AreEqual(expected, result);
         }
@@ -32,7 +32,7 @@ namespace TestProject1
             //Подготовка
             string perimeter = "-16";
             //Действие
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Rhombus(perimeter));
             //Проверка
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -43,7 +43,7 @@ namespace TestProject1
             //Подготовка
             string perimeter = "0";
             //Действие
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Rhombus(perimeter));
             //Проверка
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -54,20 +54,20 @@ namespace TestProject1
             //Подготовка
             string perimeter = "asdf";
             //Действие
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Rhombus(perimeter));
             //Проверка
             Assert.AreEqual(Farmer.invalidPerEx, result.Message);
         }
 
 
-        // приколы для круга
+        // тесты для круга
         [TestMethod]
-        public void Circle_18_2579Returns()
+        public void Circle_18_2025Returns()
         {
             string perimeter = "18";
-            double expected = 25.79;
+            double expected = 25.78;
 
-            var result = Farmer.Square(perimeter);
+            var result = Farmer.Circle(perimeter);
 
             Assert.AreEqual(expected, result);
         }
@@ -77,7 +77,7 @@ namespace TestProject1
         {
             string perimeter = "-16";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Circle(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -87,7 +87,7 @@ namespace TestProject1
         {
             string perimeter = "0";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Circle(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -97,20 +97,20 @@ namespace TestProject1
         {
             string perimeter = "asdf";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Circle(perimeter));
 
             Assert.AreEqual(Farmer.invalidPerEx, result.Message);
         }
 
 
-        // приколы для пятиугольника
+        // тесты для пятиугольника
         [TestMethod]
         public void CorPentagon_20_2753Returns()
         {
             string perimeter = "20";
             double expected = 27.53;
 
-            var result = Farmer.Square(perimeter);
+            var result = Farmer.CorPentagon(perimeter);
 
             Assert.AreEqual(expected, result);
         }
@@ -120,7 +120,7 @@ namespace TestProject1
         {
             string perimeter = "-16";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorPentagon(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -130,7 +130,7 @@ namespace TestProject1
         {
             string perimeter = "0";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorPentagon(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -140,20 +140,20 @@ namespace TestProject1
         {
             string perimeter = "asdf";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorPentagon(perimeter));
 
             Assert.AreEqual(Farmer.invalidPerEx, result.Message);
         }
 
 
-        // приколы для шестиугольника
+        // тесты для шестиугольника
         [TestMethod]
         public void CorHexagon_24_4157Returns()
         {
             string perimeter = "24";
-            double expected = 41.57;
+            double expected = 41.58;
 
-            var result = Farmer.Square(perimeter);
+            var result = Farmer.CorHexagon(perimeter);
 
             Assert.AreEqual(expected, result);
         }
@@ -163,7 +163,7 @@ namespace TestProject1
         {
             string perimeter = "-16";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorHexagon(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -173,7 +173,7 @@ namespace TestProject1
         {
             string perimeter = "0";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorHexagon(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -183,20 +183,20 @@ namespace TestProject1
         {
             string perimeter = "asdf";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorHexagon(perimeter));
 
             Assert.AreEqual(Farmer.invalidPerEx, result.Message);
         }
 
 
-        // приколы для прямоугольника
+        // тесты для прямоугольника
         [TestMethod]
-        public void Rectangle_25_3906Returns()
+        public void Rectangle_16_1762Returns()
         {
-            string perimeter = "20";
-            double expected = 25;
+            string perimeter = "16";
+            double expected = 14.22;
 
-            var result = Farmer.Square(perimeter);
+            var result = Farmer.Rectangle(perimeter);
 
             Assert.AreEqual(expected, result);
         }
@@ -206,7 +206,7 @@ namespace TestProject1
         {
             string perimeter = "-16";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Rectangle(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -216,7 +216,7 @@ namespace TestProject1
         {
             string perimeter = "0";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Rectangle(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -226,13 +226,13 @@ namespace TestProject1
         {
             string perimeter = "asdf";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.Rectangle(perimeter));
 
             Assert.AreEqual(Farmer.invalidPerEx, result.Message);
         }
 
 
-        // приколы для квадрата
+        // тесты для квадрата
         [TestMethod]
         public void Square_25_3906Returns()
         {
@@ -275,14 +275,14 @@ namespace TestProject1
         }
 
 
-        // приколы для правильного треугольника
+        // тесты для правильного треугольника
         [TestMethod]
         public void CorTriangle_15_1083Returns()
         {
             string perimeter = "15";
             double expected = 10.83;
 
-            var result = Farmer.Square(perimeter);
+            var result = Farmer.CorTriangle(perimeter);
 
             Assert.AreEqual(expected, result);
         }
@@ -292,7 +292,7 @@ namespace TestProject1
         {
             string perimeter = "-16";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorTriangle(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -302,7 +302,7 @@ namespace TestProject1
         {
             string perimeter = "0";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorTriangle(perimeter));
 
             Assert.AreEqual(Farmer.negNullPerEx, result.Message);
         }
@@ -312,13 +312,13 @@ namespace TestProject1
         {
             string perimeter = "asdf";
 
-            var result = Assert.ThrowsException<Exception>(() => Farmer.Square(perimeter));
+            var result = Assert.ThrowsException<Exception>(() => Farmer.CorTriangle(perimeter));
 
             Assert.AreEqual(Farmer.invalidPerEx, result.Message);
         }
 
 
-        // приколы для н-угольника
+        // тесты для н-угольника
         [TestMethod]
         public void CorNgon_16_16returns()
         {

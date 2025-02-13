@@ -14,11 +14,11 @@ namespace Interface
             { "rectangle", Farmer.Rectangle },
             { "circle", Farmer.Circle },
             { "hexagon", Farmer.CorHexagon },
-            { "nangle", perimeter => Farmer.CorNgon(perimeter, sides) }
+            { "nangle", perimeter => Farmer.CorNgon(perimeter, int.Parse(sides)) }
         };
-        
+
         private static string figure = "";
-        private static int sides = int.Parse(new Form1().nangleSides.Text);
+        private static string sides = new Form1().nangleSides.Text;
         public Form1()
         {
             InitializeComponent();
@@ -28,19 +28,43 @@ namespace Interface
         {
             try
             {
+                if (string.IsNullOrEmpty(figure))
+                {
+                    MessageBox.Show("Выберите фигуру");
+                    return;
+                }
+
+                if (figure == "nangle")
+                {
+                    if (!int.TryParse(nangleSides.Text, out var sides))
+                    {
+                        MessageBox.Show("Некорректный ввод сторон\n\nСмотрите справку");
+                        return;
+                    }
+
+                    if (sides <= 0)
+                    {
+                        MessageBox.Show("Количество сторон должно быть больше либо равно 3\n\nСмотрите справку");
+                        return;
+                    }
+                }
+
                 if (calculations.TryGetValue(figure, out var calculation))
                 {
                     double result = calculation(perimeterInput.Text);
                     squareOutput.Text = result.ToString();
                 }
-                else
-                {
-                    MessageBox.Show("Ошибка выбора фигуры");
-                }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Ошибка");
+                if (ex.Message == Farmer.invalidPerEx)
+                {
+                    MessageBox.Show("Некорректный ввод периметра\n\nСмотрите справку");
+                }
+                else if (ex.Message == Farmer.negNullPerEx)
+                {
+                    MessageBox.Show("Периметер должен быть больше 0\n\nСмотрите справку");
+                }
             }
         }
 
@@ -63,10 +87,7 @@ namespace Interface
 
         private void nangleSides_TextChanged(object sender, EventArgs e)
         {
-            if(!int.TryParse(nangleSides.Text, out sides))
-            {
-                MessageBox.Show("Введите корректное число сторон\n\nСмотрите справку");
-            }
+            sides = nangleSides.Text;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace ClassLibrary
         public static readonly string negNullPerEx = "NegativeNullPerimeterValueException";
         public static readonly string invalidPerEx = "InvalidPerimeterValueException";
         public static readonly string invalidSidesEx = "InvalidSidesValueNgonException";
+        public static readonly string negNullSidesEx = "NegativeNullSidesValueNgonException";
         /// <summary>
         /// Метод для обработки общей ошибки длины периметра
         /// </summary>
