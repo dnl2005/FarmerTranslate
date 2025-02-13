@@ -1,10 +1,24 @@
 using ClassLibrary;
+using Microsoft.VisualBasic;
 
 namespace Interface
 {
     public partial class Form1 : Form
     {
+        private static Dictionary<string, Func<string, double>> calculations = new Dictionary<string, Func<string, double>>
+        {
+            { "triangle", Farmer.CorTriangle },
+            { "rhombus", Farmer.Rhombus },
+            { "square", Farmer.Square },
+            { "pentagon", Farmer.CorPentagon },
+            { "rectangle", Farmer.Rectangle },
+            { "circle", Farmer.Circle },
+            { "hexagon", Farmer.CorHexagon },
+            { "nangle", perimeter => Farmer.CorNgon(perimeter, sides) }
+        };
+        
         private static string figure = "";
+        private static int sides = int.Parse(new Form1().nangleSides.Text);
         public Form1()
         {
             InitializeComponent();
@@ -14,92 +28,45 @@ namespace Interface
         {
             try
             {
-                double per;
-                if (!double.TryParse(perimeterInput.Text, out per))
+                if (calculations.TryGetValue(figure, out var calculation))
                 {
-                    throw new Exception();
+                    double result = calculation(perimeterInput.Text);
+                    squareOutput.Text = result.ToString();
                 }
-
-                if(per < 0)
+                else
                 {
-                    throw new Exception();
-                }
-                else if (per == 0)
-                {
-                    MessageBox.Show("Ââĺäčňĺ ďĺđčěĺňđ");
-                }
-
-                switch (figure)
-                {
-                    case "triangle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorTriangle(perimeterInput.Text).ToString();
-                        break;
-                    case "rhombus":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rhombus(perimeterInput.Text).ToString();
-                        break;
-                    case "square":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Square(perimeterInput.Text).ToString();
-                        break;
-                    case "pentagon":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorPentagon(perimeterInput.Text).ToString();
-                        break;
-                    case "rectangle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Rectangle(perimeterInput.Text).ToString();
-                        break;
-                    case "circle":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.Circle(perimeterInput.Text).ToString();
-                        break;
-                    case "hexagon":
-                        squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorHexagon(perimeterInput.Text).ToString();
-                        break;
-                    case "nangle":
-                        int sides;
-                        if (int.TryParse(nangleSides.Text, out sides))
-                        {
-                            if(sides >= 3)
-                            {
-                                squareOutput.Text = perimeterInput.Text == "0" ? "" : Farmer.CorNgon(perimeterInput.Text, sides).ToString();
-                            }
-                            else if(sides < 0)
-                            {
-                                MessageBox.Show("Ęîëč÷ĺńňâî óăëîâ íĺ äîëćíî áűňü îňđčöŕňĺëüíűě");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Ęîëč÷ĺńňâî óăëîâ äîëćíî áűňü íĺ ěĺíüřĺ 3");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Íĺâĺđíűé ââîä óăëîâ");
-                        }
-                        break;
-                    default:
-                        MessageBox.Show("Âűáĺđčňĺ ôčăčđó");
-                        break;
+                    MessageBox.Show("Ошибка выбора фигуры");
                 }
             }
             catch
             {
-                MessageBox.Show("Îřčáęŕ ââîäŕ ďĺđčěĺňđŕ");
+                MessageBox.Show("Ошибка");
             }
         }
 
-        // ÄŔËĹĹ ĎĐČĚĹÍĹÍČĹ ŃŇČËČÉ ĎĐČ ÍŔĆŔŇČČ ĘÍÎĎĘČ
         private void list_Click(object sender, EventArgs e)
         {
-            switch (listBox1.SelectedIndex)
+            if (listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < calculations.Count)
             {
-                case 0: figure = "triangle"; break; case 1: figure = "rhombus"; break; 
-                case 2: figure = "pentagon"; break; case 3: figure = "rectangle"; break;
-                case 4: figure = "square"; break; case 5: figure = "circle"; break;
-                case 6: figure = "hexagon"; break; 
-                case 7: 
-                    figure = "nangle"; 
-                    label2.Visible = true;
-                    nangleSides.Visible = true;
-                    break;
+                var keys = calculations.Keys;
+                figure = calculations.ElementAt(listBox1.SelectedIndex).Key;
+                ChangeNSidesVis();
             }
-        } 
+        }
+
+        private void ChangeNSidesVis()
+        {
+            bool isNangle = figure == "nangle";
+            this.label2.Visible = isNangle;
+            this.nangleSides.Visible = isNangle;
+        }
+
+        private void nangleSides_TextChanged(object sender, EventArgs e)
+        {
+            if(!int.TryParse(nangleSides.Text, out sides))
+            {
+                MessageBox.Show("Введите корректное число сторон\n\nСмотрите справку");
+            }
+        }
     }
 }
