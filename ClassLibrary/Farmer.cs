@@ -1,11 +1,16 @@
 using System;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data.SqlTypes;
 using System.Drawing;
 using System.Formats.Asn1;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Security.AccessControl;
 using System.Security.Principal;
+using System.Text.Json.Serialization.Metadata;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClassLibrary
 {
@@ -22,7 +27,7 @@ namespace ClassLibrary
         private static double ErrorDispatcher(string perimeter)
         {
             double per;
-            if(!double.TryParse(perimeter, out per))
+            if (!double.TryParse(perimeter, out per))
             {
                 throw new Exception(invalidPerEx);
             }
@@ -48,9 +53,8 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double corTrianglePerimeter = per / 4 * 3; //сторона 1 из 2 треугольников
             double area = CorTriangle(corTrianglePerimeter.ToString()) * 2; // площадь ромба
-            return area;
+            return ReturnArea(area);
         }
-
         /// <summary>
         /// Метод для нахождения площади круга
         /// </summary>
@@ -65,7 +69,10 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double radius = per / (2 * Math.PI); // радиус круга
             double area = Math.Pow(radius, 2) * Math.PI; //площадь круга
-            return area;
+
+
+            return ReturnArea(area);
+
         }
 
         /// <summary>
@@ -94,9 +101,9 @@ namespace ClassLibrary
             double areaTriangle = halfSide * h; //площадь равнобедренного треугольника 
 
             double areaPentagon = 5 * areaTriangle;//площадь пятиугольника
-            return areaPentagon;
+            return ReturnArea(areaPentagon);
         }
-      
+
         /// <summary>
         /// Метод для нахождения площади шестиугольника
         /// </summary>
@@ -110,7 +117,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double perTriangle = per / 2; //периметр треугольника
             double area = 6 * CorTriangle(perTriangle.ToString());
-            return area;
+            return ReturnArea(area);
         }
 
 
@@ -127,7 +134,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double side = per / 6; //меньшая сторона прямоугольника
             double area = side * 2 * side; //площадь прямоугольника
-            return area;
+            return ReturnArea(area);
         }
 
 
@@ -144,9 +151,9 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double side = per / 4; //сторона квадрата
             double area = Math.Pow(side, 2); //площадь квадрата
-            return area;
+            return ReturnArea(area);
         }
-        
+
 
         /// <summary>
         /// Метод для нахождения площади правильного треугольника
@@ -160,7 +167,7 @@ namespace ClassLibrary
             double per = ErrorDispatcher(perimeter.ToString());
             double side = per / 3; //сторона треугольника
             double area = Math.Sqrt(3) * Math.Pow(side, 2) / 4; //площадь правильного треугольника
-            return area;
+            return ReturnArea(area);
         }
         /// Метод для нахождения площади n-угольника
         /// </summary>
@@ -176,29 +183,57 @@ namespace ClassLibrary
             //площадь треугольника S = 1/2 *a*h
             //высота равностороннего треугольника(формула) h = a*√3/2
             //площадь равностороннего треугольника S = a^2*√3/4
-            
-            if (sides >4)
+
+            if (sides > 4)
             {
                 double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
                 areaTotal = (sides) * areaTriangle;
-                return areaTotal;
+                return ReturnArea(areaTotal);
             }
             else if (sides == 4)
-            { 
+            {
                 areaTotal = side * side;
-                return areaTotal;
+                return ReturnArea(areaTotal);
             }
             else if (sides == 3)
             {
                 double areaTriangle = side * side * Math.Sqrt(3) / 4;
                 areaTotal = areaTriangle;
-                return areaTotal;
+                return ReturnArea(areaTotal);
             }
-            else if(sides == 2 || sides == 1 || sides <= 0)
+            else if (sides == 2 || sides == 1 || sides <= 0)
             {
                 throw new Exception(invalidSidesEx);
             }
             return 0;
         }
+
+
+        /// <summary>
+        /// Метод для округления возвращаемого значения площади фигуры до 2 знаков после запятой
+        /// </summary>
+        /// <param name="area">  Площадь фигуры  </param>
+        /// <returns>  Возвращает значение площади с точностью до 2 знаков после запятой  </returns>
+        public static double ReturnArea(double area)
+        {
+            //принцип работы - ищется запятая, разделяющая дробную и целую части числа
+            //если она есть и число не соответствует маске '*,?0',
+            //то число округляется с точностью до 2 знаков после запятой
+            //иначе выводится площадь без изменений
+
+            string areaRound = area.ToString(); //  перевод площади в строку 
+            int comma_index = areaRound.IndexOf(','); // индекс запятой в дробной части 
+
+            if (comma_index == -1 || areaRound[comma_index + 2] == 0)
+            {
+                return area;
+            }
+            else 
+            {
+                return Math.Round(area,2);
+            }
+
+        }
     }
 }
+    
