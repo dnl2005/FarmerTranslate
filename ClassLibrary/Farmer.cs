@@ -182,32 +182,29 @@ namespace ClassLibrary
             double areaTotal = 0;
 
             //площадь n-угольника состоит из нескольких теругольников: Sn = n*Sтр
-            //площадь треугольника S = 1/2 *a*h
-            //высота равностороннего треугольника(формула) h = a*√3/2
-            //площадь равностороннего треугольника S = a^2*√3/4
+            //площадь треугольника Sтр = 1/2 * a * h
+            //h будет равно a/2 * ctg(alpha/2), где alpha - центральный угол треугольника, alpha = 2*PI/n
+            //тогда Sтр = a*a*ctg(alpha/2)/4
 
             if (sides > 4)
             {
-                double areaTriangle = (side * side * Math.Sqrt(3)) / 4;
-                areaTotal = (sides) * areaTriangle;
+                double angle = 2 * Math.PI / sides; //центральный угол треугольника
+                double areaTriangle = (side * side / Math.Tan(angle / 2)) / 4;//площадь одного треугольника
+                areaTotal = sides * areaTriangle;//тотальная площадь
                 return Math.Round(areaTotal,2);
             }
             else if (sides == 4)
             {
-                areaTotal = side * side;
-                return Math.Round(areaTotal,2);
+                return Square(perimeter);//частный случай для правильного четырехугольника, т.е. квадрата
             }
             else if (sides == 3)
             {
-                double areaTriangle = side * side * Math.Sqrt(3) / 4;
-                areaTotal = areaTriangle;
-                return Math.Round(areaTotal,2);
+                return CorTriangle(perimeter);//частный случай для правильного треугольника
             }
-            else if (sides == 2 || sides == 1 || sides <= 0)
+            else
             {
-                throw new Exception(invalidSidesEx);
+                throw new Exception(invalidSidesEx);//многоугольника с двумя и меньше сторонами не существует, поднимаем ощибку
             }
-            return 0;
         }
     }
 }
