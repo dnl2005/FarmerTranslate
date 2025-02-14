@@ -38,11 +38,11 @@ namespace Interface
                 {
                     if (!int.TryParse(nangleSides.Text, out var sides))
                     {
-                        MessageBox.Show("Некорректный ввод сторон\n\nСмотрите справку");
+                        MessageBox.Show("Количество сторон должно быть целым положительным числом, большим 3\n\nСмотрите справку");
                         return;
                     }
 
-                    if (sides <= 0)
+                    if (sides < 3)
                     {
                         MessageBox.Show("Количество сторон должно быть больше либо равно 3\n\nСмотрите справку");
                         return;

@@ -120,4 +120,12 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>47, 19</value>
   </metadata>
+  <data name="help.ToolTip" xml:space="preserve">
+    <value>1. Выберите фигуру (в случае выбора н-угольника 
+укажите целочисленное положительное количество сторон, большее 3)
+
+2. Введите периметер. Например: 16 или 16,32 (через запятую)
+
+3. Нажмите рассчитать</value>
+  </data>
 </root>

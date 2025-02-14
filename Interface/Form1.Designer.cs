@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             perimeterInput = new TextBox();
             squareOutput = new TextBox();
@@ -62,7 +63,6 @@
             perimeterInput.Size = new Size(143, 32);
             perimeterInput.TabIndex = 1;
             perimeterInput.Text = "16";
-            toolTip1.SetToolTip(perimeterInput, "asdffd");
             // 
             // squareOutput
             // 
@@ -169,7 +169,7 @@
             help.TabIndex = 19;
             help.Text = "?";
             help.TextAlign = ContentAlignment.MiddleCenter;
-            toolTip1.SetToolTip(help, "1. Выберите фигуру (в случае выбора н-угольника \r\nукажите количество сторон)\r\n\r\n2. Введите периметер. Например: 16 или 16,32 (через запятую)\r\n\r\n3. Нажмите рассчитать");
+            toolTip1.SetToolTip(help, resources.GetString("help.ToolTip"));
             // 
             // Form1
             // 
